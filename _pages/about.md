@@ -10,4 +10,3 @@ redirect_from:
 
 This is Equeen's home on the web!
 
-Lorem ipsum.
