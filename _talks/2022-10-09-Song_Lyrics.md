@@ -13,6 +13,10 @@ location: "Fudan, Shanghai, China"
 
 #### 1. 李白
 ##### 1）《忆秦娥》
-<audio src="/files/李白-忆秦娥.aac"></audio>
+<audio src="/files/test.wav"></audio>
+<audio src="/files/test.mp3"></audio>
+
+<audio autoplay="autoplay"> <source = src="/files/test.mp3" type="audio/mp3"> </audio>
+
 
 
