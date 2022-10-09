@@ -12,11 +12,8 @@ location: "Fudan, Shanghai, China"
 ### 按顺序记录了前5周讲过的篇目。第一段声音为合集，后面为单个的，可按需收听。
 
 #### 1. 李白
-##### 1）《忆秦娥》
-<audio src="/files/test.wav"></audio>
-<audio src="/files/test.mp3"></audio>
+##### 1）[《忆秦娥》](https://leeedwina430.github.io/files/test.wav)
 
-<audio autoplay="autoplay"> <source = src="/files/test.mp3" type="audio/mp3"> </audio>
 
 
 
