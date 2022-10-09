@@ -8,7 +8,6 @@ date: 2022-10-09
 location: "Fudan, Shanghai, China"
 ---
 
-[toc]
 
 ### 按顺序记录了前5周讲过的篇目。第一段声音为合集，后面为单个的，可按需收听。
 
