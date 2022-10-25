@@ -12,7 +12,7 @@ Proof. 反证法
 
 例题1：1,2,…,3n个数里面取n+1个，至少两个有倍数关系—— 蓝书
 
-<img src='https://leeedwina430.github.io/images/image-20221014011851030.png'>
+<img src='https://github.com/leeedwina430/leeedwina430.github.io/blob/master/images/image-20221014011910039.png'>
 
 例题2：前缀和 Prefix sums
 
