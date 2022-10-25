@@ -12,7 +12,8 @@ Proof. 反证法
 
 例题1：1,2,…,3n个数里面取n+1个，至少两个有倍数关系—— 蓝书
 
-<img src='/images/image-20221014011851030.png' >
+<img src='/images/image-20221014011851030.png'>
+<img src='/images/2021fdu.png'>
 
 例题2：前缀和 Prefix sums
 
