@@ -18,7 +18,7 @@ Proof. 反证法
 
 例题3：国际象棋棋手连续21局问题——蓝书P59+例题2
 
-![image-20221014011900130](C:\Users\equee\AppData\Roaming\Typora\typora-user-images\image-20221014011900130.png)
+<img src='https://github.com/leeedwina430/leeedwina430.github.io/blob/master/images/image-20221014011900130.png'>
 
 ### Pigeonhole Principle (Strong Form)
 
@@ -26,7 +26,7 @@ Proof. 反证法
 
 例题1：同心圆颜色配对——蓝书P60
 
-![image-20221014011910039](C:\Users\equee\AppData\Roaming\Typora\typora-user-images\image-20221014011910039.png)
+<img src='https://github.com/leeedwina430/leeedwina430.github.io/blob/master/images/image-20221014011910039.png'>
 
 
 
@@ -70,16 +70,16 @@ https://math.stackexchange.com/questions/3086834/given-any-n2-integers-show-that
 
 https://math.stackexchange.com/questions/500674/number-of-surjective-functions-from-a-to-b#:~:text=Similarly%2C%20there%20are%2024%20functions%20from%20A%20to,functions%20respecting%20the%20property%20we%20are%20looking%20for.
 
-![image-20221013193911730](C:\Users\equee\AppData\Roaming\Typora\typora-user-images\image-20221013193911730.png)
+<img src='https://github.com/leeedwina430/leeedwina430.github.io/blob/master/images/image-20221013193911730.png'>
 
 参考链接2：对几种函数的数量求法做了解释（还有其他数学知识）
 
 https://math24.net/counting-functions.html
 
-![image-20221013193953178](C:\Users\equee\AppData\Roaming\Typora\typora-user-images\image-20221013193953178.png)
+<img src='https://github.com/leeedwina430/leeedwina430.github.io/blob/master/images/image-20221013193953178.png'>
 
 参考链接3：解释了stirling数（还有很多其他数学知识！！！）
 
 https://mathworld.wolfram.com/StirlingNumberoftheSecondKind.html
 
-![image-20221013193849178](C:\Users\equee\AppData\Roaming\Typora\typora-user-images\image-20221013193849178.png)
+<img src='https://github.com/leeedwina430/leeedwina430.github.io/blob/master/images/image-20221013193849178.png'>
