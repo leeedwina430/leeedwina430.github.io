@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Welcome to Yiqing Li's Homepage!"
+title: "Hello!"
 excerpt: "Senior Data Science Student at Fudan University"
 author_profile: true
 redirect_from: 
@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hello! My name is Yiqing Li, a senior student at Fudan University majoring in Data Science and Big Data Technology. This website is still actively under construction. 
+Hello! My name is Zack Lee, a senior student at Fudan University majoring in Data Science and Big Data Technology. This website is still actively under construction. 
 
 Please feel free to email me to chat!
 
