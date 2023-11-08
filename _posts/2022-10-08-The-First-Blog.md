@@ -3,7 +3,7 @@ title: '离散数学 lec 5 Combinations (hw4)'
 date: 2022-10-08
 permalink: /posts/2022/10/The-First-Blog/
 tags:
-  - Personal Information
+  - CourseNotes
 ---
 
 ## Pigeonhole Principle
