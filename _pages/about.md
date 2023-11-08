@@ -1,13 +1,15 @@
 ---
 permalink: /
-title: "About me"
-excerpt: "About me"
+title: "Welcome to Yiqing Li's Homepage!"
+excerpt: "Senior Data Science Student at Fudan University"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-This is Equeen's home on the web!
+Hello! My name is Yiqing Li, a senior student at Fudan University majoring in Data Science and Big Data Technology. This website is still actively under construction. 
 
-Hello! My name is Zack Lee, a senior student at Fudan University majoring in Data Science and Big Data Technology. My research interests lie primarily in the connection between causality and deep learning, interpretable machine learning and causal transfer learning.
+Please feel free to email me to chat!
+
+Email: leeedwina430@gmail.com
