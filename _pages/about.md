@@ -12,4 +12,4 @@ Hello! My name is Yiqing Li, a senior student at Fudan University majoring in Da
 
 Please feel free to email me to chat!
 
-Email: leeedwina430 [AT] gmail [DOT] com
+Email: leeedwina430 [at] gmail [dot] com
