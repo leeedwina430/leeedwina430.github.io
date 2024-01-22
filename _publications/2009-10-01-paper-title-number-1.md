@@ -2,7 +2,7 @@
 title: "Interventional Fairness on Partially Known Causal Graphs: A Constrained Optimization Approach"
 collection: publications
 permalink: /publication/2023-01-16-paper-title-number-1
-excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
+excerpt: 'Interventional Fairness on Partially Known Causal Graphs: A Constrained Optimization Approach'
 date: 2023-01-16
 venue: 'ICLR24'
 paperurl: '[http://academicpages.github.io/files/paper1.pdf](http://arxiv.org/abs/2401.10632)'
