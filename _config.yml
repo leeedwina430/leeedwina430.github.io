@@ -7,12 +7,12 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Equeen"
+title                    : "Scorpio Lee"
 title_separator          : "-"
-name                     : &name "Equeen"
-description              : &description "Student"
+name                     : &name "Yiqing Li (Scorpio Lee)"
+description              : &description "Senior Student at Fudan University majoring in Data Science"
 url                      : https://leeedwina430.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
+baseurl                  : "https://leeedwina430.github.io" # the subpath of your site, e.g. "/blog"
 repository               : "leeedwina430.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
@@ -57,9 +57,9 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter
+  username               : &zack10975606 # &twitter
 facebook:
-  username               :
+  username               :Zack Lee
   app_id                 :
   publisher              :
 og_image                 :  # Open Graph/Twitter default site image
@@ -80,13 +80,13 @@ analytics:
 
 # Site Author
 author:
-  name             : "Equeen"
-  avatar           : "profile.png"
-  bio              : "Student"
-  location         : "Shanghai, China"
+  name             : "Scorpio Lee"
+  avatar           : "photo.jpg"
+  bio              : "Undergraduate Student"
+  location         : "Abu Dhabi, UAE (Shanghai, China)"
   employer         :
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  googlescholar    : "http://github.com"
+  pubmed           : ""
+  googlescholar    : ""
   email            :
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
@@ -103,13 +103,13 @@ author:
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         :
-  orcid            : "http://orcid.org/testaccount"
+  orcid            : ""
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "test"
+  twitter          : "https://twitter.com/zack10975606"
   vine             :
   weibo            :
   xing             :
