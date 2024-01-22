@@ -7,9 +7,9 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Scorpio Lee"
+title                    : "Yiqing Li"
 title_separator          : "-"
-name                     : &name "Yiqing Li (Scorpio Lee)"
+name                     : &name "Yiqing Li"
 description              : &description "Senior Student at Fudan University majoring in Data Science"
 url                      : https://leeedwina430.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "https://leeedwina430.github.io" # the subpath of your site, e.g. "/blog"
@@ -57,7 +57,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter "@zack10975606"
+  username               : &twitter
 facebook:
   username               :
   app_id                 :
@@ -80,7 +80,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Scorpio Lee"
+  name             : "Yiqing Li"
   avatar           : "photo.jpg"
   bio              : "Undergraduate Student"
   location         : "Abu Dhabi, UAE (Shanghai, China)"
@@ -103,7 +103,7 @@ author:
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         :
-  orcid            : ""
+  orcid            : #""
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
