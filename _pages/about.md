@@ -8,8 +8,8 @@ redirect_from:
   - /about.html
 ---
 
-Hello! My name is Zack Lee, a senior student at Fudan University majoring in Data Science and Big Data Technology. This website is still actively under construction. 
+Hello! My name is Yiqing Li, a senior student at Fudan University majoring in Data Science and Big Data Technology. I am currently interested in Machine Learning, especially causality, deep learning and Large Language Models.
 
 Please feel free to email me to chat!
 
-Email: leeedwina430@gmail.com
+Email: leeedwina430 [AT] gmail [DOT] com
