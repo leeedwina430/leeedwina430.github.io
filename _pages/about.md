@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Scorpio Lee"
+title: "Yiqing Li"
 excerpt: "Senior Data Science Student at Fudan University"
 author_profile: true
 redirect_from: 
@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hello! My name is Yiqing Li (Scorpio Lee), a senior student at Fudan University majoring in Data Science and Big Data Technology. I am currently interested in Machine Learning, especially causality, deep learning and Large Language Models.
+Hello! My name is Yiqing Li, a senior student at Fudan University majoring in Data Science and Big Data Technology. I am currently interested in Machine Learning, especially causality, deep learning and Large Language Models.
 
 Please feel free to email me to chat!
 
