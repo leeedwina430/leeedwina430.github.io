@@ -27,10 +27,10 @@ Note that \* denotes equal contributions.
 <ul>
 <font size="3">
 <li><p> Interventional Fairness on Partially Known Causal Graphs: A Constrained Optimization Approach. <br />
- Aoqi Zuo, <b>Yiqing Li</b>, Susan Wei, and Mingming Gong. <a href="http://arxiv.org/abs/2401.10632">[ICLR 2024]</a>  <b>Oral</b>
+ Aoqi Zuo, <b>Yiqing Li</b>, Susan Wei, and Mingming Gong. <a href="http://arxiv.org/abs/2401.10632">[ICLR 2024]</a>
  </p></li>
 <!-- <li><p> Near-Optimal Algorithms for Making the Gradient Small in Stochastic Minimax Optimization. <br />
- <b>Lesi Chen</b> and Luo Luo. <a href="https://arxiv.org/abs/2208.05925">[JMLR 2024]</a>
+ <b>Lesi Chen</b> and Luo Luo. <a href="https://arxiv.org/abs/2208.05925">[JMLR 2024]</a> <b>Oral</b>
 </p></li> 
 <li><p> Functionally Constrained Algorithm Solves Convex Simple Bilevel Problems. <br />
 Huaqing Zhang*, <b>Lesi Chen*</b>, Jing Xu, and Jingzhao Zhang. <a href="https://arxiv.org/abs/2409.06530">[NeurIPS 2024]  </a>
