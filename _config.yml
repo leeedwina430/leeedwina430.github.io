@@ -81,12 +81,12 @@ analytics:
 # Site Author
 author:
   name             : "Yiqing Li"
-  avatar           : "yiqing.png"
+  avatar           : "photo.jpg" #"yiqing.png"
   bio              : "Senior Student at Fudan University Majoring in Data Science"
-  location         : "Abu Dhabi, UAE (Shanghai, China)"
+  location         : "Abu Dhabi, UAE"
   employer         :
   pubmed           : #""
-  googlescholar    : #""
+  googlescholar    : "TSllt9AAAAAJ&hl"
   email            :
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
