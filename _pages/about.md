@@ -8,8 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hello! My name is Yiqing Li, currently a research associate at Machine Learning Department of Mohamed bin Zayed University of Artificial Intelligence (MBZUAI), supervised by Professor <u><a href="{{https://www.andrew.cmu.edu/user/kunz1/index.html}}">Kun Zhang</a>.</u>
-Before that, I obtained my bachelor’s degree from <u><a href="{{https://www.fudan.edu.cn/en/}}">Fudan University</a></u> in China, majoring in Data Science and Big Data Technology. I also spent time at the University of Melbourne under the supervision of <u><a href="{{https://mingming-gong.github.io/}}">Mingming Gong</a></u> in 2023.
+Hello! My name is Yiqing Li, currently a research associate at Machine Learning Department of Mohamed bin Zayed University of Artificial Intelligence (MBZUAI), supervised by Professor [Kun Zhang](https://www.andrew.cmu.edu/user/kunz1/index.html). Before that, I obtained my bachelor’s degree from [Fudan University](https://www.fudan.edu.cn/en/) in China, majoring in Data Science and Big Data Technology. I also spent time at the University of Melbourne under the supervision of [Mingming Gong](https://mingming-gong.github.io/) in 2023.
 
 ### Research Interests
 
