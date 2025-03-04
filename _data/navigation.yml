@@ -1,8 +1,8 @@
 # main links links
 main:
 
-  - title: "Personal Misc." #"Talks"
-    url: /talks/       
+  # - title: "Talks"
+  #   url: /talks/       
     
   # - title: "Portfolio"
   #   url: /portfolio/
@@ -20,3 +20,6 @@ main:
   #  url: /teaching/    
   #-  - title: "Guide"
   #-  url: /markdown/
+  
+  - title: "Personal Misc."
+    url: /talks/    
