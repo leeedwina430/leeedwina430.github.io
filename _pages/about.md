@@ -19,7 +19,7 @@ Please feel free to email me to chat!
 
 Email: leeedwina430 [at] gmail [dot] com
 
-<h2> Selected Publications </h2>
+### Selected Publications
 
 <ul>
 <font size="3">
