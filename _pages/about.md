@@ -21,6 +21,8 @@ Email: leeedwina430 [at] gmail [dot] com
 
 ### Selected Publications
 
+Note that \* denotes equal contributions and † means corresponding authors.
+
 <ul>
 <font size="3">
 <li><p> Extracting Rare Dependence Patterns via Adaptive Sample Reweighting. <br />
