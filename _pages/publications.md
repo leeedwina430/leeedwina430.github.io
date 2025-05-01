@@ -9,20 +9,19 @@ My full publications list is on [Google Scholar](https://scholar.google.com/cita
 
 Note that \* denotes equal contributions and † means corresponding authors.
 
- <!--
- <h2> Recent Preprints </h2>
+<!-- <h2> Recent Preprints </h2>-->
 
-<ul>
-<font size="3">
- -->
+<!-- <ul> -->
+<!-- <font size="3"> -->
+ 
 <!-- <li><p> Computationally Faster Newton Methods by Lazy Evaluations. <br />
  <b>Lesi Chen</b>, Chengchang Liu, Luo Luo, and Jingzhao Zhang. <a href="https://arxiv.org/abs/2501.17488">[arXiv 2025]  </a>
 </p></li> -->
 <!-- <li><p> Near-Optimal Nonconvex-Strongly-Convex Bilevel Optimization with Fully First-Order Oracles. <br />
  <b>Lesi Chen*</b>, Yaohua Ma*, and Jingzhao Zhang. <a href="https://arxiv.org/abs/2306.14853">[arXiv 2023]  </a>
  </p></li> -->
-<!-- </font>
-</ul>-->
+<!-- </font> -->
+<!-- </ul> -->
 
 <h2> Selected Publications </h2>
 
