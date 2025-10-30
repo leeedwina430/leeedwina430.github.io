@@ -8,7 +8,7 @@ author_profile: true
 
 <h2> Research Showcase in MBZUAI, October 30, 2025 </h2>
 
-<a href="[https://icml.cc/Conferences/2025/CallForPapers](https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link)">[[ICML 2025](https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link)]</a>
+<a href="https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link">[https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link]</a>
 
 <ul>
 <font size="3">
