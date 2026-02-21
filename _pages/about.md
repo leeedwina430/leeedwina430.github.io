@@ -42,9 +42,8 @@ Note that \* denotes equal contributions and † means corresponding authors.
 
 
 ### Services
-
-#### Conference Reviewer/Program Committee:
-
-International Conference on Machine Learning (ICML)
-
-International Conference on Learning Representations (ICLR)
+Conference Reviewer/Program Committee:
+  * International Conference on Machine Learning (ICML)
+  * International Conference on Learning Representations (ICLR)
+  * AAAI Conference on Artificial Intelligence (AAAI)
+  * ACM International Conference on Multimedia (ACM MM)
