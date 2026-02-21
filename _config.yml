@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "Yiqing Li"
-  avatar           : "photo.jpg" #"yiqing.png"
+  avatar           : "selfie.jpg" #"photo.jpg" #"yiqing.png"
   bio              : "Senior Student at Fudan University Majoring in Data Science"
   location         : "Abu Dhabi, UAE"
   employer         :
