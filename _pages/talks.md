@@ -6,7 +6,7 @@ author_profile: true
 ---
 
 
-<h2> Research Showcase in MBZUAI, October 30, 2025 </h2>
+<h2> Research Showcase at MBZUAI, October 30, 2025 </h2>
 
 <a href="https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link">[https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link]</a>
 
