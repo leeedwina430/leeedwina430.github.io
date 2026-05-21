@@ -42,8 +42,10 @@ Note that \* denotes equal contributions and † means corresponding authors.
 
 
 ### Services
-Conference/Journal Reviewer/Program Committee:
+Conference Reviewer/Program Committee:
   * International Conference on Learning Representations (ICLR)
   * International Conference on Machine Learning (ICML) (Gold Reviewer 2026)
   * Conference on Neural Information Processing Systems (NeurIPS)
+
+Journal Reviewer:
   * Transactions on Pattern Analysis and Machine Intelligence (TPAMI)
