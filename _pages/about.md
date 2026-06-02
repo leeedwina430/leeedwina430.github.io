@@ -19,7 +19,7 @@ Please feel free to email me to chat!
 
 Email: leeedwina430 [at] gmail [dot] com
 
-### Selected Publications
+### Selected Publications <a href="https://leeedwina430.github.io/publications/">[Full Publications]</a>
 
 Note that \* denotes equal contributions and † means corresponding authors.
 
