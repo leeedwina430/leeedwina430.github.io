@@ -1,5 +1,5 @@
 ---
-title: "2022 Autumn Song Lyrics Guide at Fudan University (in Chinese)"
+title: "2022 Autumn Song Ci Poetry Guide at Fudan University (in Chinese)"
 date: 2022-11-5
 permalink: /posts/2022/10/Song_Lyrics/
 tags:
