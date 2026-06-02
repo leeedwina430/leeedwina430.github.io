@@ -8,7 +8,12 @@ author_profile: true
 
 <h2> Research Showcase at MBZUAI, October 30, 2025 </h2>
 
-<a href="https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link">[https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link]</a>
+One minute research talk for <a href="https://openreview.net/pdf?id=Uc1EAICxTD">[Independence Test for Linear Non-Gaussian Data and Applications in Causal Discovery]</a>.
+
+<a href="https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link">[Google Drive link for the talk video]</a>.
+
+<!-- 
+<a href="https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link">[https://drive.google.com/file/d/1iN11ToJpmMRk7tdskHQselBpP__ZEehT/view?usp=drive_link]</a> -->
 
 <!-- <ul>
 <font size="3">

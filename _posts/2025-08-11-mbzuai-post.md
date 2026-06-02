@@ -6,6 +6,8 @@ tags:
   - mbzuai_post
 ---
 
-School blog for _Extracting Rare Dependence Patterns via Adaptive Sample Reweighting_.
+School blog for <a href="https://openreview.net/pdf?id=iIPAdNq9cq">[Extracting Rare Dependence Patterns via Adaptive Sample Reweighting]</a>.
 
-https://mbzuai.ac.ae/news/rare-and-revealing-a-new-method-for-uncovering-hidden-patterns-in-data/
+<a href="https://mbzuai.ac.ae/news/rare-and-revealing-a-new-method-for-uncovering-hidden-patterns-in-data/">[Rare and revealing: A new method for uncovering hidden patterns in data]</a>.
+
+<!-- https://mbzuai.ac.ae/news/rare-and-revealing-a-new-method-for-uncovering-hidden-patterns-in-data/ -->

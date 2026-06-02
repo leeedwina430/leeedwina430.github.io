@@ -45,11 +45,16 @@ Note that \* denotes equal contributions and † means corresponding authors.
 </ul>
 
 
-### Services
+### Services and Awards
 Conference Reviewer/Program Committee:
   * International Conference on Learning Representations (ICLR)
-  * International Conference on Machine Learning (ICML) (Gold Reviewer 2026)
+  * International Conference on Machine Learning (ICML)
   * Conference on Neural Information Processing Systems (NeurIPS)
 
 Journal Reviewer:
   * Transactions on Pattern Analysis and Machine Intelligence (TPAMI)
+
+Selected Awards:
+  * Gold Reviewer for ICML (2026)
+  <!-- * First Prize in Summer Datacup of Data Science Student Society at Unimelb -->
+
