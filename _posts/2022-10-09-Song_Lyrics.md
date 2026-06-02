@@ -1,12 +1,12 @@
 ---
-title: "2022秋宋词导读前5周已讲篇目"
-collection: talks
-type: "Audio"
-permalink: /talks/2022-10-09-Song_Lyrics
-venue: "H3309"
-date: 2022-10-09
-location: "Fudan, Shanghai, China"
+title: "2022 Autumn Song Lyrics Guide at Fudan University (in Chinese)"
+date: 2022-11-5
+permalink: /posts/2022/10/Song_Lyrics/
+tags:
+  - CourseNotes
 ---
+
+This is a collection of poems taught in the class. Each link refer to an audio by myself.
 
 ## 宋前（唐代）
 
