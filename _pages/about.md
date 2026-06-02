@@ -27,19 +27,19 @@ Note that \* denotes equal contributions and † means corresponding authors.
 <font size="3">
   <li><p> Independence Test for Linear Non-Gaussian Data and Applications in Causal Discovery. <br />
  <b>Yiqing Li</b>, Xiaofei Wang, Boyang Sun, Yewei Xia, and Kun Zhang†. <br />
-    <b>ICLR 2026</b>, <a href="https://openreview.net/pdf?id=Uc1EAICxTD">[paper]</a>
+    ICLR 2026, <a href="https://openreview.net/pdf?id=Uc1EAICxTD">[paper]</a>, <a href="https://github.com/leeedwina430/LiNGIC">[code]</a>
  </p></li>
  <li><p> Conditional Independent Component Analysis For Estimating Causal Structure with Latent Variables. <br />
  Yewei Xia, Zhengming Chen, Haoyue Dai, Fuhong Wang, Yixin Ren, <b>Yiqing Li</b>, Kun Zhang, and Shuigeng Zhou. <br />
-   <b>ICLR 2026</b>, <a href="https://openreview.net/pdf?id=TAOpnCPnjg">[paper]</a>
+   ICLR 2026, <a href="https://openreview.net/pdf?id=TAOpnCPnjg">[paper]</a>
  </p></li>
 <li><p> Extracting Rare Dependence Patterns via Adaptive Sample Reweighting. <br />
  <b>Yiqing Li*</b>, Yewei Xia*, Xiaofei Wang, Zhengming Chen, Liuhua Peng, Mingming Gong†, and Kun Zhang†. <br />
-   <b>ICML 2025</b>, <a href="https://openreview.net/pdf?id=iIPAdNq9cq">[paper]</a>, <a href="https://github.com/leeedwina430/RKCIT">[code]</a>
+   ICML 2025, <a href="https://openreview.net/pdf?id=iIPAdNq9cq">[paper]</a>, <a href="https://github.com/leeedwina430/RKCIT">[code]</a>
  </p></li>
  <li><p> Interventional Fairness on Partially Known Causal Graphs: A Constrained Optimization Approach. <br />
  Aoqi Zuo, <b>Yiqing Li</b>, Susan Wei, and Mingming Gong. <br />
-   <b>ICLR 2024</b>, <a href="http://arxiv.org/abs/2401.10632">[paper]</a>, <a href="https://github.com/aoqiz/Interventional-Fairness-with-Partially-Known-Causal-Graphs">[code]</a>
+   ICLR 2024, <a href="http://arxiv.org/abs/2401.10632">[paper]</a>, <a href="https://github.com/aoqiz/Interventional-Fairness-with-Partially-Known-Causal-Graphs">[code]</a>
  </p></li>
 </font>
 </ul>
