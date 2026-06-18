@@ -14,7 +14,7 @@ Hello! My name is Yiqing Li, currently a master's student at Machine Learning De
 
 My research interests lie at the intersection of causality, machine learning, and artificial intelligence. I aim to develop learning systems that go beyond correlation fitting to uncover, represent, and reason about the causal mechanisms underlying complex data. My work focuses on causal discovery, causal representation learning, latent variable modeling, and robust generalization and extrapolation, with the broader goal of building AI systems that are interpretable, trustworthy, and useful for decision making.
 
-One of my current research directions is to learn compact and causally meaningful representations from multimodal observational data, especially when the underlying data-generating process is hidden, high-dimensional, and intertwined across modalities. More broadly, I am motivated by the view that causality provides a principled lens for understanding the data-generating mechanisms behind the world we observe, and that uncovering causal mechanisms is essential for building AI systems that can truly understand, intervene, and generalize. Through my research, I hope to find principled ways to reveal such mechanisms from data and translate them into more reliable, actionable, and scientifically meaningful learning systems.
+One of my current research directions is to learn compact and causally meaningful representations from multimodal observational data with hidden, high-dimensional, and cross-modal data-generating processes. More broadly, I view causality as a principled lens for uncovering the mechanisms behind observed data, with the goal of building AI systems that can better understand, intervene, and generalize.
 
 Please feel free to email me to chat!
 
