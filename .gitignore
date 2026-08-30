@@ -1,2 +1,6 @@
 _site/
 
+.env
+analytics/.dev.vars*
+analytics/.wrangler/
+analytics/node_modules/

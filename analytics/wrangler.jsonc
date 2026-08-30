@@ -1,0 +1,31 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "leeedwina430-github-io-analytics",
+	"main": "worker.mjs",
+	"compatibility_date": "2026-08-30",
+	"workers_dev": true,
+	"vars": {
+		"SITE_ID": "leeedwina430-github-io",
+		"DASHBOARD_BRAND": "Yiqing Li",
+		"ALLOWED_ORIGINS": "https://leeedwina430.github.io,http://localhost:8000,http://127.0.0.1:8000",
+		"DASHBOARD_UTC_OFFSET_MINUTES": "480",
+		"RETENTION_DAYS": "180",
+		"RATE_LIMIT_PER_MINUTE": "30"
+	},
+	"triggers": {
+		"crons": [
+			"17 18 * * *"
+		]
+	},
+	"observability": {
+		"enabled": false
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "leeedwina430-github-io-analytics",
+			"database_id": "f46cda3e-523f-48f9-a225-7110f8a7168c",
+			"remote": true
+		}
+	]
+}
