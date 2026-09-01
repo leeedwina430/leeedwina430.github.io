@@ -48,11 +48,13 @@ Note that \* denotes equal contributions and † means corresponding authors.
 
 ### Services and Awards
 Conference Reviewer/Program Committee:
+  * AAAI Conference on Artificial Intelligence (AAAI)
   * International Conference on Learning Representations (ICLR)
   * International Conference on Machine Learning (ICML)
   * Conference on Neural Information Processing Systems (NeurIPS)
 
 Journal Reviewer:
+  * Transactions on Machine Learning Research (TMLR)
   * Transactions on Pattern Analysis and Machine Intelligence (TPAMI)
 
 Selected Awards:
