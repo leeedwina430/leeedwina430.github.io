@@ -1,0 +1,159 @@
+/* ===========================================================================
+   PUBLICATIONS
+   ========================================================================== */
+
+.publications-page {
+  .publications-intro {
+    margin-bottom: 0.25rem;
+  }
+
+  .publications-note {
+    margin: 0;
+    color: $gray;
+    font-size: 0.83rem;
+  }
+
+  .publications-heading {
+    margin: 2rem 0 0;
+  }
+
+  .publication-list {
+    margin-top: 0.85rem;
+    border-top: 1px solid $border-color;
+  }
+
+  .publication-entry {
+    display: grid;
+    grid-template-columns: minmax(155px, 190px) minmax(0, 1fr);
+    gap: 1.4rem;
+    align-items: center;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .publication-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 132px;
+    padding: 0.65rem;
+    overflow: hidden;
+    background: #fafbfc;
+    border: 1px solid mix(#fff, $light-gray, 45%);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+
+    img {
+      width: 100%;
+      max-height: 130px;
+      margin: 0;
+      object-fit: contain;
+      box-shadow: none;
+    }
+
+    &:hover,
+    &:focus {
+      border-color: mix(#fff, $info-color, 35%);
+      box-shadow: 0 7px 20px rgba($darker-gray, 0.1);
+      transform: translateY(-1px);
+
+      img {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .publication-copy {
+    min-width: 0;
+  }
+
+  .publication-title {
+    margin: 0 0 0.45rem;
+    font-size: 1.02rem;
+    line-height: 1.38;
+
+    a {
+      color: $darker-gray;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: $link-color-hover;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .publication-authors {
+    margin: 0 0 0.55rem;
+    color: $text-color;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .publication-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    margin-bottom: 0.55rem;
+  }
+
+  .publication-venue,
+  .publication-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
+    padding: 0.22rem 0.58rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .publication-venue {
+    color: mix(#000, $info-color, 25%);
+    background: mix(#fff, $info-color, 88%);
+  }
+
+  .publication-link {
+    color: $gray;
+    background: #fff;
+    border: 1px solid $border-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $link-color-hover;
+      border-color: mix(#fff, $info-color, 45%);
+      text-decoration: none;
+    }
+  }
+
+  .publication-summary {
+    margin: 0;
+    color: $gray;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+}
+
+@include breakpoint(max-width $small) {
+  .publications-page {
+    .publication-entry {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.9rem;
+      padding: 1.25rem 0;
+    }
+
+    .publication-media {
+      min-height: 0;
+      aspect-ratio: 16 / 8;
+
+      img {
+        max-height: 145px;
+      }
+    }
+  }
+}
