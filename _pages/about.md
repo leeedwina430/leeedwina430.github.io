@@ -63,6 +63,8 @@ Selected Awards:
 
 ### Useful Tools Designed with AI
 
-- [Quiet Timer](https://github.com/leeedwina430/quiet-timer) (macOS): a floating countdown with silent popup reminders and a daily tally of completed goals.
-
-  *For deadline warriors who need a deadline before the deadline. My survival kit when paper reviews pile up.*
+<ul>
+  <li><a href="https://github.com/leeedwina430/quiet-timer">Quiet Timer</a> (macOS): a floating countdown with silent popup reminders and a daily tally of completed goals.
+    <blockquote style="margin: 0;">For deadline warriors who need a deadline before the deadline. My survival kit when paper reviews pile up.</blockquote>
+  </li>
+</ul>
