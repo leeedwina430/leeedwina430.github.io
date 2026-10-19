@@ -61,3 +61,6 @@ Selected Awards:
   * Gold Reviewer for ICML (2026)
   <!-- * First Prize in Summer Datacup of Data Science Student Society at Unimelb -->
 
+### Useful Tools Designed with AI
+
+  * [Quiet Timer](https://github.com/leeedwina430/quiet-timer) (macOS): a silent countdown timer that floats in a corner of your screen and shows a popup instead of ringing an alarm when time is up, so it never disturbs people at a shared desk. It also keeps a daily tally of the goals you actually completed. It is a great fit for deadline warriors (people whose efficiency only really picks up as the deadline approaches) who still don't want to start everything at the last minute: an always-visible countdown gives you a mini deadline up front. I personally find it pretty useful when I have MANY paper review tasks ending in the same week.
