@@ -1,0 +1,1236 @@
+<title>My Desk</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: masthead with a ruler-style status strip, then a wide Today checklist (yesterday's review on top) beside a narrow column holding the coming days and the inbox; one column on phones. */
+:root{
+  --bg:#EDF0F2; --surface:#F8F9FA; --raise:#FFFFFF;
+  --ink:#13222B; --muted:#52646B; --faint:#7C8B92;
+  --line:#CFD7DC; --line-soft:#E1E7EA;
+  --accent:#1B5FD9; --accent-soft:#DCE8FB; --on-accent:#FFFFFF;
+  --urgent:#B42D0C; --urgent-soft:#FBE3DB;
+  --soon:#7A5000; --soon-soft:#F6E8C4;
+  --ok:#17713A;
+  --sample:#6B3FA0; --sample-soft:#EADFF6;
+  --f-display:"Bricolage Grotesque","Avenir Next","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,"PingFang SC","Microsoft YaHei",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1418; --surface:#141D22; --raise:#1A252B;
+    --ink:#E5ECF0; --muted:#9AAAB2; --faint:#74848C;
+    --line:#2A3841; --line-soft:#1F2C33;
+    --accent:#7FAEFF; --accent-soft:#17294A; --on-accent:#0D1418;
+    --urgent:#FF9B7B; --urgent-soft:#3A1E15;
+    --soon:#E8BE5A; --soon-soft:#35290D;
+    --ok:#5FCB88;
+    --sample:#CDB1F2; --sample-soft:#2A1D3F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1418; --surface:#141D22; --raise:#1A252B;
+  --ink:#E5ECF0; --muted:#9AAAB2; --faint:#74848C;
+  --line:#2A3841; --line-soft:#1F2C33;
+  --accent:#7FAEFF; --accent-soft:#17294A; --on-accent:#0D1418;
+  --urgent:#FF9B7B; --urgent-soft:#3A1E15;
+  --soon:#E8BE5A; --soon-soft:#35290D;
+  --ok:#5FCB88;
+  --sample:#CDB1F2; --sample-soft:#2A1D3F;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+.w38{width:38%}.w82{width:82%}.w64{width:64%}
+.pad{padding-inline:16px}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:16px;padding-block:28px 40px;display:flex;flex-direction:column;gap:20px}
+
+/* masthead */
+.mast{display:flex;flex-direction:column;gap:18px}
+.mast-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 24px;flex-wrap:wrap}
+.eyebrow{margin:0 0 6px;font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;font:600 clamp(26px,4.4vw,40px)/1.1 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
+.sync{display:flex;align-items:center;gap:10px;font:12px var(--f-mono);color:var(--muted);flex-wrap:wrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--faint);flex:none}
+.dot.live{background:var(--ok);animation:pulse 2.4s ease-out infinite}
+.dot.sample{background:var(--sample)}
+.dot.warn{background:var(--soon)}
+.dot.err{background:var(--urgent)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 45%,transparent)}70%,100%{box-shadow:0 0 0 7px transparent}}
+.strip{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 0}
+.strip>div{border-left:1px solid var(--line);padding-left:14px;min-width:0}
+.strip dt{font:500 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.strip dd{margin:4px 0 0;min-width:0}
+.strip .v{display:block;font:600 26px/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.strip .s{display:block;margin-top:2px;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.btn{font:500 12px/1 var(--f-body);padding:7px 11px;border:1px solid var(--line);background:var(--raise);color:var(--ink);border-radius:6px;cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn:focus-visible,a:focus-visible,.cb:focus-visible,.ghost:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ghost{font:500 12px/1 var(--f-body);padding:6px 8px;border:0;border-radius:5px;background:transparent;color:var(--muted);cursor:pointer}
+.ghost:hover{background:var(--line-soft);color:var(--ink)}
+
+.banner{border:1px dashed var(--sample);background:var(--sample-soft);border-radius:8px;padding:10px 14px;font-size:13px}
+.banner strong{color:var(--sample);font-family:var(--f-mono);letter-spacing:.06em}
+
+/* layout */
+.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+.side{display:flex;flex-direction:column;gap:20px;min-width:0}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;min-width:0;overflow:hidden}
+.panel.is-sample{border-style:dashed;border-color:var(--sample)}
+.panel-head{display:flex;align-items:center;gap:10px;padding:14px 16px 8px;flex-wrap:wrap}
+.panel-head h2{margin:0;font:600 18px/1.2 var(--f-display)}
+.tag-sample{font:600 10px/1 var(--f-mono);letter-spacing:.1em;padding:3px 6px;border-radius:4px;background:var(--sample-soft);color:var(--sample)}
+.stamp{margin-left:auto;font:11px var(--f-mono);color:var(--faint)}
+.prog{margin-left:auto;display:flex;align-items:center;gap:8px;font:12px var(--f-mono);color:var(--muted)}
+.bar{width:88px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.sub{padding-top:14px;padding-bottom:4px;font:600 11px/1 var(--f-mono);letter-spacing:.1em;color:var(--muted)}
+
+/* to-do rows */
+.tds{list-style:none;margin:0;padding:0 16px}
+.td{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:2px 10px;align-items:start;padding:11px 0;border-top:1px solid var(--line-soft)}
+.td:first-child{border-top:0}
+.cb{width:22px;height:22px;margin-top:1px;padding:0;border:1.5px solid var(--faint);border-radius:6px;background:var(--raise);color:transparent;display:grid;place-items:center;cursor:pointer;transition:background .12s,border-color .12s}
+.cb svg{width:14px;height:14px}
+.cb:hover{border-color:var(--accent)}
+.cb.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.td-main{min-width:0}
+.td-title{font-weight:500;overflow-wrap:anywhere}
+.td-title a{color:inherit;text-decoration:none}
+.td-title a:hover{text-decoration:underline}
+.td-desc{color:var(--muted);font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.td-side{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.td-meta{font:11px/1.9 var(--f-mono);color:var(--faint);white-space:nowrap}
+.td.is-done .td-title{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--faint);font-weight:400}
+.td.is-done .td-desc{display:none}
+.td-acts{grid-column:2/4;display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.kind{opacity:.0;transition:opacity .12s}
+@media (hover:none){.kind{opacity:.85}}
+.td:hover .kind,.ev:hover .kind,.kind:focus-visible,.td:focus-within .kind,.ev:focus-within .kind{opacity:1}
+.chip{display:inline-block;margin-right:6px;padding:2px 6px;border-radius:4px;font:600 10px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;vertical-align:1px;background:var(--line-soft);color:var(--muted)}
+.chip.urgent{background:var(--urgent-soft);color:var(--urgent)}
+.chip.carried{background:var(--accent-soft);color:var(--accent)}
+.all-done{margin:0;padding:10px 16px 6px;font-size:13px;color:var(--ok)}
+.quiet{margin:0;padding:10px 16px 6px;font-size:13px;color:var(--muted)}
+
+/* review block (yesterday and older) */
+.review{margin:6px 16px 10px;border:1px solid var(--line);border-radius:8px;background:var(--raise)}
+.review>summary,.drop>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 12px;font-weight:600;font-size:14px}
+.review>summary::-webkit-details-marker,.drop>summary::-webkit-details-marker{display:none}
+.review>summary::before,.drop>summary::before{content:"";width:6px;height:6px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .12s;flex:none;margin-right:4px}
+.review[open]>summary::before,.drop[open]>summary::before{transform:rotate(45deg)}
+.review-body{padding:0 12px 10px}
+.review-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 0 8px}
+.review-tools .hint{flex:1 1 200px;font-size:12px;color:var(--muted)}
+.grp-h{padding:10px 0 2px;font:600 11px/1 var(--f-mono);letter-spacing:.08em;color:var(--muted)}
+.review .tds,.drop .tds{padding:0}
+.drop{margin:0 16px 14px;border-top:1px solid var(--line-soft)}
+.drop>summary{font-weight:500;font-size:13px;color:var(--muted);padding-inline:0}
+.drop .tds{padding-bottom:4px}
+
+/* schedule rows */
+.ev{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:2px 12px;padding:10px 0;border-top:1px solid var(--line-soft)}
+.ev:first-child{border-top:0}
+.ev-time .t{font:500 13px/1.5 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ev-time .d{display:block;font:11px/1.3 var(--f-mono);color:var(--faint)}
+.ev-main{min-width:0}
+.ev-title{font-weight:500;overflow-wrap:anywhere}
+.ev-title a{color:inherit;text-decoration:none}
+.ev-title a:hover{text-decoration:underline}
+.ev-desc{color:var(--muted);font-size:13px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.ev-side{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.ev-rel{font:12px/1.6 var(--f-mono);color:var(--muted);white-space:nowrap}
+.ev.is-past{opacity:.6}
+.ev.is-now{background:var(--accent-soft);margin-inline:-16px;padding-inline:16px;opacity:1}
+.ev.is-now .ev-rel{color:var(--accent);font-weight:600}
+.ev-time .cb{margin-top:1px}
+.ev.is-done .ev-title{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--faint);font-weight:400}
+.ev.is-done .ev-desc{display:none}
+.evs{list-style:none;margin:0;padding:0 16px}
+.day{padding:0 16px 6px}
+.day .evs{padding:0}
+.day-h{display:flex;gap:10px;align-items:baseline;padding:14px 0 6px;font:600 11px/1 var(--f-mono);letter-spacing:.08em;color:var(--muted)}
+.day-h .dd{font-weight:400;color:var(--faint)}
+.open-days{margin:0;padding:12px 16px 16px;border-top:1px solid var(--line-soft);font-size:13px;color:var(--muted)}
+@media (max-width:480px){
+  .ev{grid-template-columns:56px minmax(0,1fr)}
+  .ev-side{grid-column:2;flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 10px}
+  .td{grid-template-columns:28px minmax(0,1fr)}
+  .td-side{grid-column:2;flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 10px}
+}
+
+/* inbox */
+.mails{list-style:none;margin:0;padding:0}
+.mail a{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:2px 10px;padding:10px 16px;border-top:1px solid var(--line-soft);color:inherit;text-decoration:none}
+.mail a:hover{background:var(--line-soft)}
+.m-dot{grid-row:1/3;align-self:start;margin-top:7px;width:8px;height:8px;border-radius:50%}
+.is-unread .m-dot{background:var(--accent)}
+.m-from{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-when{font:11px/1.9 var(--f-mono);color:var(--faint);white-space:nowrap}
+.m-subj{grid-column:2/4;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted)}
+.is-unread .m-from,.is-unread .m-subj{color:var(--ink)}
+.is-unread .m-subj{font-weight:600}
+.mail-foot{margin:0;padding:12px 16px 14px;border-top:1px solid var(--line-soft);font-size:12px;color:var(--muted)}
+
+/* adding and deleting */
+.add{display:flex;gap:8px;padding:6px 16px 8px;flex-wrap:wrap}
+.add-in{flex:1 1 180px;min-width:0;font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--raise);color:var(--ink)}
+.add-in::placeholder{color:var(--faint)}
+.add-sel{font:inherit;font-size:13px;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--raise);color:var(--ink);max-width:100%}
+.add-in:focus-visible,.add-sel:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.add .btn{padding:9px 14px;font-size:13px}
+.add[hidden],.toast[hidden]{display:none}
+/* mail live switch */
+.tog{display:inline-flex;align-items:center;gap:8px}
+.tog[hidden]{display:none}
+.tog-sw{position:relative;flex:none;width:26px;height:15px;border-radius:8px;background:var(--faint);transition:background .15s}
+.tog-sw::after{content:"";position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:var(--bg);transition:transform .15s}
+.tog.on .tog-sw{background:var(--accent)}
+.tog.on .tog-sw::after{transform:translateX(11px)}
+.paused{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:4px 16px 8px;padding:8px 10px;border-radius:6px;background:var(--line-soft);color:var(--muted);font-size:12px}
+.paused p{margin:0;flex:1 1 200px}
+.paused .btn{padding:6px 10px}
+@media (prefers-reduced-motion: reduce){.tog-sw,.tog-sw::after{transition:none}}
+/* near-term goals */
+.goal-count{margin-left:auto;font:12px var(--f-mono);color:var(--muted)}
+.goal-hint{margin:0;padding:0 16px 6px;font-size:12px;color:var(--muted)}
+.td-btns{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:2px}
+.sched{color:var(--accent);font-weight:600}
+.sched:hover{color:var(--accent)}
+.chip.goal{background:var(--line-soft);color:var(--muted)}
+/* drag to reorder */
+.td,.ev{position:relative}
+.grip{position:absolute;left:-16px;top:10px;width:16px;height:26px;padding:0;border:0;border-radius:4px;background:transparent;color:var(--faint);display:grid;place-items:center;cursor:grab;opacity:0;touch-action:none;transition:opacity .12s}
+.grip svg{width:10px;height:16px}
+.td:hover .grip,.ev:hover .grip,.td:focus-within .grip,.ev:focus-within .grip,.grip:focus-visible{opacity:1;color:var(--muted)}
+.grip:hover{color:var(--ink)!important}
+.grip:focus-visible{outline:2px solid var(--accent);outline-offset:0}
+@media (hover:none){.grip{opacity:.75;top:5px;height:36px}}
+.is-dragging,.is-dragging *{cursor:grabbing!important;-webkit-user-select:none;user-select:none}
+.drag-lift{position:relative;z-index:6;background:var(--surface);border-radius:6px;box-shadow:0 0 0 8px var(--surface),0 10px 28px rgba(0,0,0,.3);transition:none!important}
+.drag-shift{transition:transform .16s ease}
+@media (prefers-reduced-motion:reduce){.drag-shift{transition:none}}
+.del:hover{color:var(--urgent)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;display:flex;align-items:center;gap:12px;max-width:calc(100% - 32px);padding:10px 12px 10px 14px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.toast span{min-width:0;overflow-wrap:anywhere}
+.toast .btn{flex:none;background:transparent;border-color:color-mix(in srgb,var(--bg) 45%,transparent);color:var(--bg)}
+
+/* states */
+.msg{margin:6px 16px 16px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--raise);font-size:13px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.msg strong{font-weight:600}
+.msg p{margin:0;color:var(--muted)}
+.msg.err{border-color:var(--urgent)}
+.notice{margin:4px 16px 6px;padding:6px 10px;border-radius:6px;background:var(--soon-soft);color:var(--soon);font-size:12px}
+.skel-wrap{padding:8px 16px 18px;display:flex;flex-direction:column;gap:14px}
+.skel{height:14px;border-radius:4px;background:linear-gradient(90deg,var(--line-soft),var(--line),var(--line-soft));background-size:200% 100%;animation:sh 1.6s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+@media (prefers-reduced-motion: reduce){.dot.live,.skel{animation:none}.cb,.bar i,.kind{transition:none}}
+
+.foot{font-size:12px;color:var(--muted);display:flex;gap:6px 18px;flex-wrap:wrap;align-items:baseline}
+.foot a{color:var(--accent)}
+</style>
+
+<main class="wrap">
+  <header class="mast">
+    <div class="mast-top">
+      <div>
+        <p class="eyebrow">My Desk · 美东时间</p>
+        <h1 id="today-title">今天</h1>
+      </div>
+      <div class="sync" aria-live="polite">
+        <span class="dot" id="sync-dot"></span><span id="sync-text">正在连接…</span>
+        <button class="btn tog on" id="mail-live" type="button" role="switch" aria-checked="true" hidden title="关闭后，页面不再定时读取 Gmail，可以避开读取次数限制。需要时在邮件面板里点“读取一次”。"><span class="tog-sw" aria-hidden="true"></span><span id="mail-live-text">邮件自动更新：开</span></button>
+        <button class="btn" id="refresh" type="button">刷新</button>
+      </div>
+    </div>
+    <div class="banner" id="banner" hidden>
+      <strong>示例数据</strong> 此视图连不上你的 Google 日历和 Gmail，下面所有数字和条目都是虚构的。可以试着勾选、添加、删除、拖动排序，但不会保存。请在 Claude 里打开本页查看你自己的数据。
+    </div>
+    <dl class="strip">
+      <div><dt>今日待办</dt><dd><span class="v" id="st-left">–</span><span class="s" id="st-left-s">&nbsp;</span></dd></div>
+      <div><dt>待你决定</dt><dd><span class="v" id="st-dec">–</span><span class="s" id="st-dec-s">&nbsp;</span></dd></div>
+      <div><dt>下一个日程</dt><dd><span class="v" id="st-next">–</span><span class="s" id="st-next-s">&nbsp;</span></dd></div>
+      <div><dt>未读重要邮件</dt><dd><span class="v" id="st-mail">–</span><span class="s" id="st-mail-s">&nbsp;</span></dd></div>
+    </dl>
+  </header>
+
+  <div class="grid">
+    <div class="side">
+    <section class="panel" id="panel-today" aria-labelledby="h-today">
+      <div class="panel-head">
+        <h2 id="h-today">今天</h2>
+        <span class="tag-sample" id="today-sample" hidden>示例</span>
+        <span class="prog" id="prog" hidden><span id="prog-text"></span><span class="bar"><i id="prog-bar"></i></span></span>
+      </div>
+      <form class="add" id="add-today" autocomplete="off" hidden>
+        <input class="add-in" id="add-today-in" type="text" maxlength="200" placeholder="添加今天的待办，回车确认" aria-label="添加今天的待办">
+        <button class="btn primary" type="submit">添加</button>
+      </form>
+      <div id="today-body"></div>
+    </section>
+    <section class="panel" id="panel-goals" aria-labelledby="h-goals">
+      <div class="panel-head">
+        <h2 id="h-goals">近期目标</h2>
+        <span class="tag-sample" id="goals-sample" hidden>示例</span>
+        <span class="goal-count" id="goal-count"></span>
+      </div>
+      <p class="goal-hint">没有日期，也不会自动顺延，不计入今天的进度。有空时点「排到今天」，它就进入今天的清单。</p>
+      <form class="add" id="add-goal" autocomplete="off" hidden>
+        <input class="add-in" id="add-goal-in" type="text" maxlength="200" placeholder="添加近期目标，回车确认" aria-label="添加近期目标">
+        <button class="btn primary" type="submit">添加</button>
+      </form>
+      <div id="goals-body"></div>
+    </section>
+    </div>
+    <div class="side">
+      <section class="panel" id="panel-next" aria-labelledby="h-next">
+        <div class="panel-head">
+          <h2 id="h-next">接下来几天</h2>
+          <span class="tag-sample" id="next-sample" hidden>示例</span>
+        </div>
+        <form class="add" id="add-next" autocomplete="off" hidden>
+          <select class="add-sel" id="add-next-day" aria-label="添加到哪一天"></select>
+          <input class="add-in" id="add-next-in" type="text" maxlength="200" placeholder="添加待办，回车确认" aria-label="添加待办">
+          <button class="btn primary" type="submit">添加</button>
+        </form>
+        <div id="next-body"></div>
+      </section>
+      <section class="panel" id="panel-mail" aria-labelledby="h-mail">
+        <div class="panel-head">
+          <h2 id="h-mail">重要邮件</h2>
+          <span class="tag-sample" id="mail-sample" hidden>示例</span>
+          <span class="stamp" id="mail-stamp"></span>
+        </div>
+        <div id="mail-body"></div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span>页面打开时读取你的 Google 日历和 Gmail，之后每两分钟刷新一次（邮件可用顶部的开关暂停）。勾选、添加、删除和排序的记录都保存在本页自己的私有存储里，不会写回日历。</span>
+    <a href="https://calendar.google.com/calendar/r/week" target="_blank" rel="noopener noreferrer">打开日历</a>
+    <a href="https://mail.google.com/mail/#inbox" target="_blank" rel="noopener noreferrer">打开 Gmail</a>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" hidden><span id="toast-text"></span><button class="btn" id="toast-undo" type="button">撤销</button></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- settings ---------- */
+const TZ = 'America/New_York';
+const CAL = { server: 'Google Calendar', tool: 'list_events' };
+const MAIL = { server: 'Gmail', tool: 'search_threads' };
+const DAYS = 7;                 // days ahead shown, today included
+const LOOKBACK = 7;             // days back that can still hold unfinished to-dos
+const MAIL_DAYS = 14;
+const MAIL_SHOW = 12;
+const REFRESH_MS = 120000;
+const MAIL_QUERY = 'in:inbox is:important newer_than:' + MAIL_DAYS + 'd';
+const URGENT_RE = /asap|ddl|due|urgent|deadline|紧急|截止|尽快/i;
+const OTP_RE = /verification code|security code|one[- ]time|passcode|验证码|校验码/i;
+const TAG_RE = /^[【\[（(]([^】\]）)]{1,14})[】\]）)]\s*/;
+const HARD = new Set(['needs_reauth','server_not_connected','server_not_found','selection_required','blocked_by_policy','approval_required','not_in_manifest','not_granted','capability_disabled','capability_removed']);
+
+/* ---------- time helpers (everything is rendered in TZ) ---------- */
+const fmtParts = new Intl.DateTimeFormat('en-US',{timeZone:TZ,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+const fmtTime = new Intl.DateTimeFormat('zh-CN',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+const fmtFull = new Intl.DateTimeFormat('zh-CN',{timeZone:TZ,weekday:'long',month:'long',day:'numeric'});
+const fmtWeekday = new Intl.DateTimeFormat('zh-CN',{timeZone:'UTC',weekday:'long'});
+const fmtWeekdayShort = new Intl.DateTimeFormat('zh-CN',{timeZone:'UTC',weekday:'short'});
+const fmtMonthDay = new Intl.DateTimeFormat('zh-CN',{timeZone:'UTC',month:'long',day:'numeric'});
+function parts(ms){const o={};fmtParts.formatToParts(ms).forEach(p=>{if(p.type!=='literal')o[p.type]=+p.value;});return o;}
+function pad(n){return String(n).padStart(2,'0');}
+function ymdOf(ms){const p=parts(ms);return p.year+'-'+pad(p.month)+'-'+pad(p.day);}
+function addDays(ymd,n){return new Date(Date.UTC(+ymd.slice(0,4),+ymd.slice(5,7)-1,+ymd.slice(8,10)+n)).toISOString().slice(0,10);}
+function dayDiff(a,b){return Math.round((Date.parse(b+'T00:00:00Z')-Date.parse(a+'T00:00:00Z'))/864e5);}
+function ymdDate(ymd){return new Date(ymd+'T12:00:00Z');}
+function tzOffsetMin(ms){const p=parts(ms);return Math.round((Date.UTC(p.year,p.month-1,p.day,p.hour%24,p.minute,p.second)-Math.floor(ms/1000)*1000)/60000);}
+function localMs(ymd,h,mi){const g=Date.UTC(+ymd.slice(0,4),+ymd.slice(5,7)-1,+ymd.slice(8,10),h,mi);return g-tzOffsetMin(g)*60000;}
+function dur(ms){ms=Math.abs(ms);const m=Math.round(ms/60000);if(m<1)return '不到1分钟';if(m<60)return m+'分钟';const h=Math.floor(m/60);if(h<6){const r=m%60;return r?h+'小时'+r+'分':h+'小时';}if(h<48)return h+'小时';return Math.round(h/24)+'天';}
+function relTo(ms,now){const d=ms-now;if(Math.abs(d)<60000)return '现在';return d>0?dur(d)+'后':dur(d)+'前';}
+function span(ms){const m=Math.round(ms/60000);if(m<=0)return '';if(m<60)return m+' 分钟';const h=Math.floor(m/60),r=m%60;return r?h+' 小时 '+r+' 分':h+' 小时';}
+function ago(ms,now){const m=Math.round((now-ms)/60000);if(m<1)return '刚刚';if(m<60)return m+'分钟前';const hh=Math.floor(m/60);if(hh<24)return hh+'小时前';return Math.floor(hh/24)+'天前';}
+function dayLabel(day,T){const d=dayDiff(T,day);if(d===0)return '今天';if(d===1)return '明天';if(d===-1)return '昨天';return fmtWeekday.format(ymdDate(day));}
+function safeKey(s){return String(s).replace(/[^A-Za-z0-9_.~:@+-]/g,'_').slice(0,150);}
+function clip(s,n){s=String(s||'');return s.length>n?s.slice(0,n):s;}
+
+/* ---------- state ---------- */
+const state = {
+  mode:'connecting',
+  cal:{status:'loading',data:null,error:null,storedAt:0,stale:false},
+  mail:{status:'loading',data:null,error:null,storedAt:0,stale:false}
+};
+/* to-do state lives in the viewer's private db subtree; `items` holds per-event records, `kinds` the todo/event overrides */
+const store = {persist:false,col:null,items:new Map(),kinds:new Map(),orders:new Map(),prefs:{},pending:0,ready:false,err:null,chain:Promise.resolve()};
+const ui = {reviewOpen:null,dropOpen:false,focus:'',focusUntil:0,selDay:'',filledT:'',toastTimer:0,dragging:false,mailBusy:false};
+let mcp = null, unsubCal = null, unsubMail = null, calDay = '';
+const $ = id => document.getElementById(id);
+
+function h(tag,props){
+  const el = document.createElement(tag);
+  if(props) for(const k in props){
+    const v = props[k];
+    if(v==null||v===false) continue;
+    if(k==='class') el.className = v;
+    else if(k==='text') el.textContent = v;
+    else if(k.slice(0,2)==='on') el.addEventListener(k.slice(2),v);
+    else el.setAttribute(k, v===true?'':v);
+  }
+  for(let i=2;i<arguments.length;i++){
+    [].concat(arguments[i]).forEach(c=>{ if(c==null||c===false) return; el.append(c.nodeType?c:document.createTextNode(c)); });
+  }
+  return el;
+}
+function svgCheck(){
+  const ns='http://www.w3.org/2000/svg';
+  const s=document.createElementNS(ns,'svg'); s.setAttribute('viewBox','0 0 16 16'); s.setAttribute('aria-hidden','true');
+  const p=document.createElementNS(ns,'path');
+  p.setAttribute('d','M3.5 8.5l3 3 6-7'); p.setAttribute('fill','none'); p.setAttribute('stroke','currentColor');
+  p.setAttribute('stroke-width','2'); p.setAttribute('stroke-linecap','round'); p.setAttribute('stroke-linejoin','round');
+  s.append(p); return s;
+}
+
+function svgGrip(){
+  const ns='http://www.w3.org/2000/svg';
+  const s=document.createElementNS(ns,'svg'); s.setAttribute('viewBox','0 0 10 16'); s.setAttribute('aria-hidden','true');
+  [[3,3],[7,3],[3,8],[7,8],[3,13],[7,13]].forEach(c=>{
+    const k=document.createElementNS(ns,'circle'); k.setAttribute('cx',c[0]); k.setAttribute('cy',c[1]); k.setAttribute('r','1.3'); k.setAttribute('fill','currentColor'); s.append(k);
+  });
+  return s;
+}
+
+/* ---------- parsing the connector payloads ---------- */
+function parseEvents(payload,today){
+  const list = payload && Array.isArray(payload.events) ? payload.events : (Array.isArray(payload) ? payload : null);
+  if(!list) throw new Error('shape');
+  const winStart = addDays(today,-LOOKBACK), winEnd = addDays(today,DAYS);
+  const out = [];
+  list.forEach(ev=>{
+    if(!ev || !ev.start || ev.status==='cancelled') return;
+    const allDay = !ev.start.dateTime;
+    let startMs,endMs,day;
+    if(allDay){
+      day = String(ev.start.date||'').slice(0,10); if(!day) return;
+      startMs = localMs(day,0,0);
+      endMs = ev.end && ev.end.date ? localMs(String(ev.end.date).slice(0,10),0,0) : startMs+864e5;
+    } else {
+      startMs = Date.parse(ev.start.dateTime);
+      endMs = ev.end && ev.end.dateTime ? Date.parse(ev.end.dateTime) : startMs;
+      day = ymdOf(startMs);
+    }
+    if(isNaN(startMs) || day<winStart || day>=winEnd) return;
+    const raw = String(ev.summary||'(无标题)').trim();
+    const m = raw.match(TAG_RE);
+    const tag = m ? m[1].trim() : '';
+    const title = m ? (raw.slice(m[0].length).trim()||raw) : raw;
+    const desc = String(ev.description||'').replace(/<[^>]+>/g,' ').split(/\n/).map(s=>s.trim()).filter(Boolean)[0] || '';
+    const key = safeKey(ev.id || ('x'+startMs+'_'+title));
+    const series = safeKey(ev.recurringEventId || ev.id || key);
+    const others = Array.isArray(ev.attendees) && ev.attendees.some(a=>a && !a.self);
+    const conf = !!ev.hangoutLink || !!(ev.conferenceData && Array.isArray(ev.conferenceData.entryPoints) && ev.conferenceData.entryPoints.length);
+    const plain = !ev.recurringEventId && !others && !ev.location && !conf && (!ev.eventType || ev.eventType==='DEFAULT');
+    out.push({key,series,title,tag,urgent:!!tag&&URGENT_RE.test(tag),day,startMs,endMs,allDay,desc,url:ev.htmlLink||'',defKind:(plain&&(tag||desc))?'todo':'event'});
+  });
+  out.sort((a,b)=> a.day<b.day?-1:a.day>b.day?1:(a.allDay!==b.allDay?(a.allDay?-1:1):a.startMs-b.startMs));
+  return out;
+}
+function senderName(s){
+  s = String(s||'').trim();
+  const m = s.match(/^"?([^"<]+?)"?\s*<[^>]+>$/);
+  return m ? m[1].trim() : s;
+}
+function parseThreads(payload){
+  const list = payload && Array.isArray(payload.threads) ? payload.threads : (Array.isArray(payload) ? payload : null);
+  if(!list) throw new Error('shape');
+  const out = [];
+  list.forEach(th=>{
+    const msgs = (th && th.messages) || [];
+    if(!msgs.length) return;
+    let latest = msgs[0], latestMs = Date.parse(msgs[0].date)||0;
+    msgs.forEach(m=>{ const t = Date.parse(m.date)||0; if(t>=latestMs){latest=m;latestMs=t;} });
+    const subject = String(latest.subject||msgs[0].subject||'(无主题)');
+    if(OTP_RE.test(subject)) return;
+    out.push({
+      from: senderName(latest.sender||msgs[0].sender),
+      subject, ms: latestMs, count: msgs.length,
+      unread: msgs.some(m=>(m.labelIds||[]).indexOf('UNREAD')>=0),
+      url: th.viewUrl || latest.viewUrl || ''
+    });
+  });
+  out.sort((a,b)=> (a.unread!==b.unread) ? (a.unread?-1:1) : b.ms-a.ms);
+  return out;
+}
+
+/* ---------- live connector data ---------- */
+function calInput(){const t=ymdOf(Date.now());return {startTime:addDays(t,-LOOKBACK)+'T00:00:00',endTime:addDays(t,DAYS)+'T00:00:00',timeZone:TZ,orderBy:'startTime',pageSize:100};}
+function mailInput(){return {query:MAIL_QUERY,pageSize:25,view:'THREAD_VIEW_MINIMAL'};}
+function accept(key,result){
+  const s = state[key];
+  try{
+    s.data = key==='cal' ? parseEvents(result.payload,ymdOf(Date.now())) : parseThreads(result.payload);
+    s.status = 'live'; s.error = null; s.stale = false;
+    s.storedAt = (result.cache && result.cache.storedAt) || Date.now();
+  }catch(e){
+    s.error = {code:'bad_shape',message:'返回的内容格式不对。'};
+    s.stale = true; if(!s.data) s.status = 'error';
+  }
+}
+function handler(key){
+  return ev=>{
+    const s = state[key];
+    if(ev.type==='data'){ accept(key,ev.result); }
+    else {
+      const err = ev.error || {code:'upstream_error',message:''};
+      s.error = err;
+      if(HARD.has(err.code)){ s.data = null; s.status = 'error'; s.stale = false; }
+      else if(s.data){ s.stale = true; }
+      else { s.status = 'error'; }
+    }
+    render();
+  };
+}
+function startCal(){
+  if(unsubCal) unsubCal();
+  calDay = ymdOf(Date.now());
+  unsubCal = mcp.watchTool(CAL.server,CAL.tool,calInput(),handler('cal'),{refetchInterval:REFRESH_MS});
+}
+function startMail(){
+  if(unsubMail) unsubMail();
+  unsubMail = mcp.watchTool(MAIL.server,MAIL.tool,mailInput(),handler('mail'),{refetchInterval:REFRESH_MS});
+}
+function stopMail(){
+  if(unsubMail){ try{ unsubMail(); }catch(e){} unsubMail = null; }
+}
+/* the inbox is only watched while the switch is on; nothing is read from Gmail before the saved preference is known */
+function mailOn(){ return store.prefs.mailLive!==false; }
+function syncMail(){
+  const want = state.mode==='live' && !!mcp && store.ready && mailOn();
+  if(want && !unsubMail) startMail();
+  else if(!want && unsubMail) stopMail();
+}
+function markReady(){
+  if(store.ready) return;
+  store.ready = true;
+  syncMail();
+}
+function setMailLive(on){
+  store.prefs = Object.assign({},store.prefs,{mailLive:on});
+  enqueue('prefs',{v:1,mailLive:on});
+  syncMail();
+  render();
+}
+async function fetchMailOnce(){
+  if(!mcp || ui.mailBusy) return;
+  ui.mailBusy = true; render();
+  try{ accept('mail', await mcp.callTool(MAIL.server,MAIL.tool,mailInput())); }
+  catch(e){ handler('mail')({type:'error',error:e||{code:'upstream_error',message:''}}); }
+  ui.mailBusy = false; render();
+}
+async function allowOnce(key){
+  const c = key==='cal' ? CAL : MAIL;
+  const input = key==='cal' ? calInput() : mailInput();
+  try{ accept(key, await mcp.callTool(c.server,c.tool,input)); }
+  catch(e){ state[key].error = e || {code:'upstream_error',message:''}; }
+  render();
+}
+async function reviewAccess(){
+  try{ const p = await window.claude.use('permissions'); if(p && p.manage) await p.manage(); }catch(e){}
+}
+
+/* ---------- saved to-do state (db, private to the viewer) ---------- */
+async function initStore(){
+  setTimeout(()=>{ if(!store.ready){ markReady(); render(); } },4000);
+  try{
+    const user = await window.claude.use('user');
+    const db = await window.claude.use('db');
+    if(!user || !db){ markReady(); render(); return; }
+    const uid = await user.id();
+    if(!uid){ markReady(); render(); return; }
+    store.col = db.collection('data/users/'+uid);
+    store.persist = true;
+    store.col.onSnapshot(onDocs,onDbErr);
+  }catch(e){ store.persist = false; markReady(); render(); }
+}
+function onDocs(snap){
+  const items = new Map(), kinds = new Map(), orders = new Map();
+  let prefs = null;
+  snap.docs.forEach(d=>{
+    const v = d.data(); if(!v) return;
+    if(d.id.slice(0,2)==='t_') items.set(d.id.slice(2),v);
+    else if(d.id==='prefs') prefs = v;
+    else if(d.id.slice(0,2)==='o_' && Array.isArray(v.keys)) orders.set(d.id.slice(2),v.keys.filter(k=>typeof k==='string'));
+    else if(d.id.slice(0,2)==='k_' && (v.kind==='todo'||v.kind==='event')) kinds.set(d.id.slice(2),v.kind);
+  });
+  store.items = items; store.kinds = kinds; store.orders = orders;
+  /* a snapshot that predates my own unsaved switch change must not flip the switch back */
+  if(store.pending===0) store.prefs = prefs || {};
+  if(!snap.metadata || !snap.metadata.fromCache) markReady();
+  syncMail();
+  render();
+}
+function onDbErr(e){
+  store.persist = false; markReady();
+  store.err = 'read:'+((e&&e.code)||'unavailable');
+  render();
+}
+function enqueue(id,data){
+  if(!store.persist) return;
+  store.pending++;
+  store.chain = store.chain
+    .then(()=>data===null ? store.col.doc(id).delete() : store.col.doc(id).set(data))
+    .then(()=>{ store.pending--; if(store.err){ store.err = null; render(); } },
+          e=>{ store.pending--; store.err = 'write:'+((e&&e.code)||'unavailable'); render(); });
+}
+function snapOf(t){return {title:clip(t.title,200),tag:clip(t.tag,20),urgent:!!t.urgent,desc:clip(t.desc,200),url:clip(t.url,500),day:t.origDay,allDay:!!t.allDay,startMs:t.startMs};}
+function patchTodo(t,patch){
+  const next = Object.assign({v:1},t.state||{},patch,{snap:snapOf(t)});
+  store.items.set(t.key,next);
+  t.state = next;
+  enqueue('t_'+t.key,next);
+}
+function apply(list,patch,focus){ list.forEach(t=>patchTodo(t,patch)); ui.focus = focus||''; ui.focusUntil = Date.now()+1500; render(); }
+function toggleDone(t,mode){
+  const s = t.state||{};
+  if(s.done){ apply([t],{done:false,doneAt:null,doneDay:null},t.key+'|cb'); return; }
+  const now = Date.now();
+  /* ticking in the review block or ahead of time records the item on the day it belongs to; ticking today's list records today */
+  apply([t],{done:true,doneAt:now,doneDay:(mode==='today'||mode==='goal')?ymdOf(now):t.eff,dropped:false,droppedAt:null},t.key+'|cb');
+}
+function carry(list){ apply(list,{carryDay:ymdOf(Date.now()),dropped:false,droppedAt:null}); }
+function restore(list){ apply(list,{dropped:false,droppedAt:null}); }
+/* delete is not the same as done: a deleted item leaves the lists and stays recoverable, a done item stays on its day, struck through */
+function del(list){
+  if(!list.length) return;
+  apply(list,{dropped:true,droppedAt:Date.now()});
+  showToast(list.length===1 ? '已删除「'+clip(list[0].title,20)+(list[0].title.length>20?'…':'')+'」' : '已删除 '+list.length+' 项',()=>restore(list));
+}
+function purge(t){
+  store.items.delete(t.key);
+  enqueue('t_'+t.key,null);
+  ui.focus = ''; ui.focusUntil = 0;
+  render();
+}
+function addTodo(title,day){
+  title = String(title||'').replace(/\s+/g,' ').trim();
+  if(!title || !day) return false;
+  const now = Date.now(), key = 'my_'+now.toString(36)+Math.random().toString(36).slice(2,6);
+  const rec = {v:1,custom:true,createdAt:now,snap:{title:clip(title,200),tag:'',urgent:false,desc:'',url:'',day:day,allDay:false,startMs:localMs(day,23,59)}};
+  store.items.set(key,rec);
+  enqueue('t_'+key,rec);
+  ui.focus = ''; ui.focusUntil = 0;
+  render();
+  return true;
+}
+function addGoal(title){
+  title = String(title||'').replace(/\s+/g,' ').trim();
+  if(!title) return false;
+  const now = Date.now(), key = 'my_'+now.toString(36)+Math.random().toString(36).slice(2,6);
+  const rec = {v:1,custom:true,goal:true,createdAt:now,goalAt:now,snap:{title:clip(title,200),tag:'',urgent:false,desc:'',url:'',day:'',allDay:false,startMs:0}};
+  store.items.set(key,rec);
+  enqueue('t_'+key,rec);
+  ui.focus = ''; ui.focusUntil = 0;
+  render();
+  return true;
+}
+/* moves between the daily list and the goals list; the toast puts every touched record back exactly as it was */
+function moveWithUndo(list,patch,msg){
+  if(!list.length) return;
+  const prev = list.map(t=>({key:t.key,state:t.state||null}));
+  apply(list,patch);
+  showToast(msg,()=>{
+    prev.forEach(x=>{
+      if(x.state){ store.items.set(x.key,x.state); enqueue('t_'+x.key,x.state); }
+      else { store.items.delete(x.key); enqueue('t_'+x.key,null); }
+    });
+    ui.focus = ''; render();
+  });
+}
+function putBack(list){
+  const now = Date.now();
+  moveWithUndo(list,{goal:true,goalAt:now,carryDay:null,done:false,doneAt:null,doneDay:null,dropped:false,droppedAt:null},
+    list.length===1 ? '已放回近期目标：「'+clip(list[0].title,20)+(list[0].title.length>20?'…':'')+'」' : '已把 '+list.length+' 项放回近期目标');
+}
+function toToday(t){
+  const now = Date.now();
+  moveWithUndo([t],{goal:false,carryDay:ymdOf(now),createdAt:now,dropped:false,droppedAt:null},
+    '已排到今天：「'+clip(t.title,20)+(t.title.length>20?'…':'')+'」');
+}
+function showToast(text,undo){
+  const box = $('toast'), b = $('toast-undo');
+  $('toast-text').textContent = text;
+  b.onclick = ()=>{ hideToast(); undo(); };
+  box.hidden = false;
+  clearTimeout(ui.toastTimer);
+  ui.toastTimer = setTimeout(hideToast,7000);
+}
+function hideToast(){ clearTimeout(ui.toastTimer); $('toast').hidden = true; }
+function fillDays(T){
+  const sel = $('add-next-day');
+  if(ui.filledT===T) return;
+  ui.filledT = T;
+  const keep = sel.value || ui.selDay;
+  const opts = [];
+  for(let i=1;i<DAYS;i++){
+    const d = addDays(T,i);
+    opts.push(h('option',{value:d,text:dayLabel(d,T)+' · '+fmtMonthDay.format(ymdDate(d))}));
+  }
+  sel.replaceChildren(...opts);
+  sel.value = opts.some(o=>o.value===keep) ? keep : addDays(T,1);
+  ui.selDay = sel.value;
+}
+function setKind(series,kind){
+  store.kinds.set(series,kind);
+  enqueue('k_'+series,{kind:kind,v:1});
+  ui.focus = '';
+  render();
+}
+
+/* ---------- manual order: one saved list of keys per day (o_<day>) ---------- */
+function todoCmp(day,base){
+  const ix = new Map(); (store.orders.get(day)||[]).forEach((k,i)=>ix.set(k,i));
+  return (a,b)=>{
+    const ia = ix.has(a.key)?ix.get(a.key):1e9, ib = ix.has(b.key)?ix.get(b.key):1e9;
+    return ia!==ib ? ia-ib : base(a,b);
+  };
+}
+/* shown = keys of the draggable rows in display order, `to` = the index the moved row ends up at */
+function moveTodo(day,shown,key,to,focus){
+  const rest = shown.filter(k=>k!==key);
+  const A = (store.orders.get(day)||[]).filter(k=>k!==key);
+  rest.forEach(k=>{ if(A.indexOf(k)<0) A.push(k); });
+  to = Math.max(0,Math.min(rest.length,to));
+  const pos = to<rest.length ? A.indexOf(rest[to]) : (rest.length ? A.indexOf(rest[rest.length-1])+1 : A.length);
+  A.splice(pos,0,key);
+  const keys = A.slice(0,300);
+  store.orders.set(day,keys);
+  enqueue('o_'+day,{v:1,keys:keys});
+  ui.focus = focus ? key+'|g' : ''; ui.focusUntil = Date.now()+1500;
+}
+function dragRows(li){ return [].filter.call(li.parentNode.children,x=>x.hasAttribute('data-drag')); }
+function gripKey(ev,li,day,key){
+  const k = ev.key;
+  if(k!=='ArrowUp' && k!=='ArrowDown' && k!=='Home' && k!=='End') return;
+  ev.preventDefault();
+  const rows = dragRows(li), i = rows.indexOf(li);
+  if(i<0) return;
+  const to = k==='ArrowUp'?i-1 : k==='ArrowDown'?i+1 : k==='Home'?0 : rows.length-1;
+  if(to<0 || to>=rows.length || to===i) return;
+  moveTodo(day,rows.map(r=>r.getAttribute('data-k')),key,to,true);
+  render();
+}
+function startDrag(ev,li,day,key,grip){
+  if(ev.pointerType==='mouse' && ev.button!==0) return;
+  const rows = dragRows(li), n = rows.length, idx0 = rows.indexOf(li);
+  if(n<2 || idx0<0 || ui.dragging) return;
+  ev.preventDefault();
+  const sy0 = window.scrollY||0;
+  const rc = rows.map(r=>{ const b = r.getBoundingClientRect(); return {top:b.top+sy0,bottom:b.bottom+sy0,mid:(b.top+b.bottom)/2+sy0}; });
+  const r0 = rc[idx0], hgt = r0.bottom-r0.top, y0 = ev.clientY+sy0;
+  let last = ev.clientY, to = idx0, ended = false;
+  ui.dragging = true;
+  document.body.classList.add('is-dragging');
+  li.classList.add('drag-lift');
+  rows.forEach((r,j)=>{ if(j!==idx0) r.classList.add('drag-shift'); });
+  try{ grip.setPointerCapture(ev.pointerId); }catch(e){}
+  const update = ()=>{
+    let dy = last+(window.scrollY||0)-y0;
+    dy = Math.max(rc[0].top-r0.top,Math.min(rc[n-1].bottom-r0.bottom,dy));
+    const centre = r0.mid+dy;
+    let t = idx0;
+    while(t<n-1 && centre>rc[t+1].mid) t++;
+    while(t>0 && centre<rc[t-1].mid) t--;
+    to = t;
+    li.style.transform = 'translateY('+Math.round(dy)+'px)';
+    rows.forEach((r,j)=>{
+      if(j===idx0) return;
+      const sh = (t>idx0 && j>idx0 && j<=t) ? -hgt : (t<idx0 && j>=t && j<idx0) ? hgt : 0;
+      r.style.transform = sh ? 'translateY('+sh+'px)' : '';
+    });
+  };
+  const onMove = e=>{
+    if(e.pointerId!==ev.pointerId) return;
+    last = e.clientY;
+    if(last<48) window.scrollBy(0,-12); else if(last>window.innerHeight-48) window.scrollBy(0,12);
+    update();
+  };
+  const onUp = e=>{ if(e.pointerId===ev.pointerId) finish(true); };
+  const onCancel = e=>{ if(e.pointerId===ev.pointerId) finish(false); };
+  const onKey = e=>{ if(e.key==='Escape') finish(false); };
+  const finish = commit=>{
+    if(ended) return; ended = true;
+    grip.removeEventListener('pointermove',onMove); grip.removeEventListener('pointerup',onUp);
+    grip.removeEventListener('pointercancel',onCancel); grip.removeEventListener('lostpointercapture',onCancel);
+    window.removeEventListener('scroll',update); document.removeEventListener('keydown',onKey);
+    try{ grip.releasePointerCapture(ev.pointerId); }catch(e){}
+    document.body.classList.remove('is-dragging');
+    rows.forEach(r=>{ r.style.transform = ''; r.classList.remove('drag-lift','drag-shift'); });
+    ui.dragging = false;
+    if(commit && to!==idx0) moveTodo(day,rows.map(r=>r.getAttribute('data-k')),key,to,false);
+    render();
+  };
+  grip.addEventListener('pointermove',onMove); grip.addEventListener('pointerup',onUp);
+  grip.addEventListener('pointercancel',onCancel); grip.addEventListener('lostpointercapture',onCancel);
+  window.addEventListener('scroll',update,{passive:true}); document.addEventListener('keydown',onKey);
+}
+function gripBtn(t,li,g){
+  const b = h('button',{class:'grip',type:'button','data-f':t.key+'|g',title:'拖动调整顺序','aria-label':'调整顺序：'+t.title+'（第 '+(g.pos+1)+' 项，共 '+g.n+' 项；按上下方向键移动，也可以拖动）'},svgGrip());
+  b.addEventListener('pointerdown',ev=>startDrag(ev,li,g.day,t.key,b));
+  b.addEventListener('keydown',ev=>gripKey(ev,li,g.day,t.key));
+  return b;
+}
+function markDraggable(li,t,g){
+  if(!g) return li;
+  li.setAttribute('data-drag',''); li.setAttribute('data-k',t.key);
+  li.append(gripBtn(t,li,g));
+  return li;
+}
+
+/* ---------- model: what belongs on which list ---------- */
+function doneMeta(s){
+  if(!s || !s.done || !s.doneAt) return '';
+  const d = ymdOf(s.doneAt);
+  if(d===s.doneDay) return '完成于 '+fmtTime.format(s.doneAt);
+  return d<s.doneDay ? '提前完成' : '';
+}
+function effDay(t){const s=t.state; if(s&&s.done&&s.doneDay) return s.doneDay; const c=(s&&s.carryDay)||''; return c>t.origDay?c:t.origDay;}
+function buildModel(now){
+  const T = ymdOf(now), Y = addDays(T,-1), winStart = addDays(T,-LOOKBACK), winEnd = addDays(T,DAYS);
+  const todos = new Map(), events = [];
+  (state.cal.data||[]).forEach(e=>{
+    const kind = store.kinds.get(e.series) || e.defKind;
+    if(kind==='todo') todos.set(e.key,{key:e.key,series:e.series,title:e.title,tag:e.tag,urgent:e.urgent,desc:e.desc,url:e.url,origDay:e.day,allDay:e.allDay,startMs:e.startMs,state:store.items.get(e.key)||null});
+    else events.push(Object.assign({},e,{kind:'event'}));
+  });
+  /* records whose event is older than the fetch window can only come back from saved state */
+  store.items.forEach((s,key)=>{
+    if(todos.has(key) || !s.snap) return;
+    const sn = s.snap;
+    if(!s.custom && !s.goal && sn.day>=winStart && sn.day<winEnd) return;
+    todos.set(key,{key:key,series:key,title:sn.title,tag:sn.tag,urgent:sn.urgent,desc:sn.desc,url:sn.url,origDay:sn.day,allDay:sn.allDay,startMs:s.custom?8e15:sn.startMs,custom:!!s.custom,createdAt:s.createdAt||0,state:s});
+  });
+  const all = [...todos.values()];
+  all.forEach(t=>{ t.eff = effDay(t); t.goalAt = (t.state&&(t.state.goalAt||t.state.createdAt))||0; });
+  const done = t=>!!(t.state&&t.state.done), gone = t=>!!(t.state&&t.state.dropped), goal = t=>!!(t.state&&t.state.goal);
+  const m = {T,Y,events};
+  m.today = all.filter(t=>!gone(t)&&!goal(t)&&t.eff===T);
+  m.goals = all.filter(t=>goal(t)&&!gone(t)&&(!done(t)||(t.state.doneAt||0)>now-7*864e5));
+  m.decide = all.filter(t=>!done(t)&&!gone(t)&&!goal(t)&&t.eff<T).sort((a,b)=>b.eff<a.eff?-1:b.eff>a.eff?1:(a.startMs-b.startMs)||(a.createdAt||0)-(b.createdAt||0));
+  m.doneY = all.filter(t=>!gone(t)&&!goal(t)&&done(t)&&t.state.doneDay===Y).sort((a,b)=>(a.state.doneAt||0)-(b.state.doneAt||0));
+  m.dropped = all.filter(t=>gone(t)&&(t.state.droppedAt||0)>now-14*864e5).sort((a,b)=>(b.state.droppedAt||0)-(a.state.droppedAt||0));
+  m.future = all.filter(t=>!gone(t)&&!goal(t)&&t.eff>T);
+  return m;
+}
+
+/* ---------- sample data (invented; shown only when the connectors can't be reached) ---------- */
+function goSample(){
+  state.mode = 'sample';
+  const t = ymdOf(Date.now());
+  let n = 0;
+  const ev = (d,hr,mi,mins,summary,description,extra)=>{
+    const s = localMs(addDays(t,d),hr,mi);
+    return Object.assign({id:'smp'+(n++),summary,description,start:{dateTime:new Date(s).toISOString()},end:{dateTime:new Date(s+mins*60000).toISOString()}},extra||{});
+  };
+  const events = [
+    ev(-2,10,0,30,'【ASAP】把签好字的表格发给教务处','示例：扫描后用学校邮箱发送 PDF。'),
+    ev(-1,9,0,30,'【DDL】上传房屋自检照片','示例：按清单拍照上传。'),
+    ev(-1,9,30,30,'给实验室管理员发邮件申请集群账号','示例：写明用户名和用途。'),
+    ev(0,9,0,30,'【ASAP】回复导师关于初稿的邮件','示例：补上他们要的两张图。'),
+    ev(0,9,30,30,'整理分析代码','示例：把实验脚本放进同一个仓库。'),
+    ev(0,10,0,30,'提交报销所需的收据','示例：附上所有付款证明。'),
+    ev(0,11,0,60,'读书会：稀疏回归',null,{recurringEventId:'smp_series1'}),
+    ev(0,15,30,30,'【DDL】报名参加工作坊','示例：截止前填完表单。'),
+    ev(1,9,0,30,'订机票','示例：对比三家价格。'),
+    ev(1,13,0,60,'学术讲座：实用优化方法',null,{location:'示例教室 101'}),
+    {id:'smp'+(n++),summary:'【DDL】摘要提交截止',description:'示例',start:{date:addDays(t,2)},end:{date:addDays(t,3)}},
+    ev(5,12,0,60,'每周组会',null,{recurringEventId:'smp_series2'})
+  ];
+  accept('cal',{payload:{events:events}});
+  accept('mail',{payload:sampleThreads()});
+  state.cal.status = state.mail.status = 'sample';
+  /* one item already done yesterday, so the review block shows both outcomes */
+  const y = state.cal.data.find(e=>e.key==='smp1');
+  if(y){
+    store.items.set(y.key,{v:1,done:true,doneAt:Date.now()-14*3600e3,doneDay:addDays(t,-1),snap:snapOf({title:y.title,tag:y.tag,urgent:y.urgent,desc:y.desc,url:'',origDay:y.day,allDay:false,startMs:y.startMs})});
+  }
+  /* invented near-term goals, so the new panel is not empty in the sample view */
+  ['整理实验记录并备份（示例）','读完那篇综述论文（示例）','想一想下学期的选课（示例）'].forEach((title,i)=>{
+    const at = Date.now()-(10-i)*3600e3;
+    store.items.set('my_smpg'+i,{v:1,custom:true,goal:true,createdAt:at,goalAt:at,snap:{title:title,tag:'',urgent:false,desc:'',url:'',day:'',allDay:false,startMs:0}});
+  });
+  store.ready = true;
+  render();
+}
+function sampleThreads(){
+  const now = Date.now();
+  const th = (id,sender,subject,minsAgo,unread)=>({id,messages:[{sender,subject,date:new Date(now-minsAgo*60000).toISOString(),labelIds:(unread?['UNREAD']:[]).concat(['IMPORTANT','INBOX'])}]});
+  return {threads:[
+    th('s1','registrar@example.edu','你的秋季选课已确认',35,true),
+    th('s2','Jordan Lee <jordan@example.org>','Re: 周五要用的图',140,true),
+    th('s3','it-help@example.edu','需要处理：更新设备设置',380,true),
+    th('s4','Housing Office <housing@example.com>','入住清单与即将到期的事项',1500,false),
+    th('s5','payroll@example.edu','已收到你的工资卡表格',3100,false)
+  ]};
+}
+
+/* ---------- rendering ---------- */
+function skeleton(){
+  return h('div',{class:'skel-wrap','aria-hidden':'true'},h('div',{class:'skel w38'}),h('div',{class:'skel'}),h('div',{class:'skel w82'}),h('div',{class:'skel w64'}),h('div',{class:'skel'}));
+}
+function errorBox(key){
+  const s = state[key], c = key==='cal'?CAL:MAIL, e = s.error||{}, name = e.server||c.server;
+  let title, text, action = null;
+  switch(e.code){
+    case 'needs_reauth': title='请重新连接 '+name; text='打开 claude.ai 设置里的“连接器”，重新连接 '+name+'，然后点“刷新”。'; break;
+    case 'server_not_connected': case 'server_not_found': title='请先添加 '+name; text='在 claude.ai 设置的“连接器”里添加 '+name+'，连接后这里会自动出现内容。'; break;
+    case 'selection_required': title='请选择一个 '+name+' 连接'; text='你有不止一个，Claude 询问时选一个，然后点“刷新”。'; break;
+    case 'not_in_manifest': case 'not_granted': title='本页没有被允许使用 '+name; text='在页面的权限设置里允许它，这个区域才能显示。'; action=h('button',{class:'btn',type:'button',onclick:reviewAccess,text:'查看权限'}); break;
+    case 'blocked_by_policy': title=name+' 被拦截了'; text='你所在的组织不允许页面使用这个连接器。'; break;
+    case 'approval_required': title=name+' 需要你确认'; text='允许读取一次，这个区域才能显示。'; action=h('button',{class:'btn',type:'button',onclick:()=>allowOnce(key),text:'允许一次'}); break;
+    case 'capability_disabled': case 'capability_removed': title='此视图无法读取实时数据'; text='请在 Claude 里打开本页。'; break;
+    case 'tool_error': title=name+' 返回了错误'; text=e.message||'请求失败。'; break;
+    default: title='无法加载 '+name; text='下次刷新时会自动重试。'+(e.code?'（'+e.code+'）':'');
+  }
+  return h('div',{class:'msg err',role:'status'},h('strong',{text:title}),h('p',{text:text}),action);
+}
+function stampText(key){
+  const s = state[key];
+  if(state.mode==='sample') return '示例';
+  return s.storedAt ? '更新于 '+fmtTime.format(s.storedAt) : '';
+}
+
+function kindBtn(series,kind,key){
+  const toTodo = kind==='event';
+  return h('button',{class:'ghost kind',type:'button','data-f':key+'|k',title:toTodo?'把它改成要勾选的待办':'这不是待办，改成普通日程',onclick:()=>setKind(series,toTodo?'todo':'event'),text:toTodo?'设为待办':'设为日程'});
+}
+function delBtn(t){
+  return h('button',{class:'ghost del',type:'button','data-f':t.key+'|d','aria-label':'删除：'+t.title,title:t.custom?'删除这条待办（可以撤销）':'从清单里删除，日历里的事件不会被改动（可以撤销）',onclick:()=>del([t]),text:'删除'});
+}
+function backBtn(t){
+  return h('button',{class:'ghost kind',type:'button','data-f':t.key+'|b',title:'不排在今天，放进近期目标（可以撤销）',onclick:()=>putBack([t]),text:'放入目标'});
+}
+function schedBtn(t){
+  return h('button',{class:'ghost sched',type:'button','data-f':t.key+'|s',title:'放进今天的清单（可以撤销）',onclick:()=>toToday(t),text:'排到今天'});
+}
+function todoRow(t,mode,m,g){
+  const s = t.state||{}, done = !!s.done;
+  const cb = h('button',{class:'cb'+(done?' on':''),type:'button',role:'checkbox','aria-checked':done?'true':'false','data-f':t.key+'|cb','aria-label':(done?'改回未完成：':'标为完成：')+t.title,onclick:()=>toggleDone(t,mode)},svgCheck());
+  const carried = !done && s.carryDay && mode==='today' && t.origDay && t.origDay<m.T;
+  const title = h('div',{class:'td-title'},
+    t.tag ? h('span',{class:'chip'+(t.urgent?' urgent':''),text:t.tag}) : null,
+    carried ? h('span',{class:'chip carried',text:'顺延自 '+fmtMonthDay.format(ymdDate(t.origDay))}) : null,
+    t.url ? h('a',{href:t.url,target:'_blank',rel:'noopener noreferrer',style:null,text:t.title}) : document.createTextNode(t.title));
+  const meta = done ? doneMeta(s) : ((mode==='goal' || t.allDay || t.custom) ? '' : fmtTime.format(t.startMs));
+  const btns = [];
+  if(mode==='today' && !done && !t.custom) btns.push(kindBtn(t.series,'todo',t.key));
+  if(mode==='today' && !done) btns.push(backBtn(t));
+  if(mode==='goal' && !done) btns.push(schedBtn(t));
+  if(mode==='today' || mode==='goal') btns.push(delBtn(t));
+  const row = h('li',{class:'td'+(done?' is-done':'')},
+    cb,
+    h('div',{class:'td-main'},title,t.desc?h('div',{class:'td-desc',text:t.desc}):null),
+    h('div',{class:'td-side'},meta?h('span',{class:'td-meta',title:!done?'日历里设的提醒时间':null,text:meta}):null,btns.length?h('div',{class:'td-btns'},btns):null));
+  if(mode==='review' && !done){
+    row.append(h('div',{class:'td-acts'},
+      h('button',{class:'btn primary',type:'button',onclick:()=>carry([t]),text:'顺延到今天'}),
+      h('button',{class:'btn',type:'button',title:'不排日期，放进近期目标，有空再做',onclick:()=>putBack([t]),text:'放回近期目标'}),
+      h('button',{class:'btn',type:'button',onclick:()=>del([t]),text:'删除'})));
+  }
+  return markDraggable(row,t,g);
+}
+function eventRow(e,now,T){
+  const current = !e.allDay && e.startMs<=now && now<e.endMs;
+  const past = !e.allDay && e.endMs<now;
+  let rel;
+  if(e.allDay) rel = e.day===T ? '全天' : '';
+  else if(current) rel = '进行中';
+  else if(past) rel = relTo(e.endMs,now).replace('前','前结束');
+  else rel = relTo(e.startMs,now);
+  return h('li',{class:'ev'+(current?' is-now':'')+(past?' is-past':'')},
+    h('div',{class:'ev-time'},h('span',{class:'t',text:e.allDay?'全天':fmtTime.format(e.startMs)}),(!e.allDay&&e.endMs>e.startMs)?h('span',{class:'d',text:span(e.endMs-e.startMs)}):null),
+    h('div',{class:'ev-main'},
+      h('div',{class:'ev-title'},e.tag?h('span',{class:'chip'+(e.urgent?' urgent':''),text:e.tag}):null,
+        e.url?h('a',{href:e.url,target:'_blank',rel:'noopener noreferrer',text:e.title}):document.createTextNode(e.title)),
+      e.desc?h('div',{class:'ev-desc',text:e.desc}):null),
+    h('div',{class:'ev-side'},h('span',{class:'ev-rel',text:rel}),kindBtn(e.series,'event',e.key)));
+}
+
+function reviewBlock(m){
+  const nDec = m.decide.length, nDone = m.doneY.length;
+  const open = ui.reviewOpen===null ? nDec>0 : ui.reviewOpen;
+  const summaryText = (nDec ? '昨天与更早' : '昨天')+' · '+nDone+' 项已完成'+(nDec?' · '+nDec+' 项待你决定':'');
+  const det = h('details',{class:'review',open:open||null},h('summary',{text:summaryText}));
+  det.addEventListener('toggle',()=>{ ui.reviewOpen = det.open; });
+  const body = h('div',{class:'review-body'});
+  if(nDec){
+    body.append(h('div',{class:'review-tools'},
+      h('span',{class:'hint',text:'没做完的不会自动顺延，由你决定。'}),
+      h('button',{class:'btn primary',type:'button',onclick:()=>carry(m.decide),text:'全部顺延到今天'}),
+      h('button',{class:'btn',type:'button',onclick:()=>putBack(m.decide),text:'全部放回近期目标'}),
+      h('button',{class:'btn',type:'button',onclick:()=>del(m.decide),text:'全部删除'})));
+  }
+  /* group by the day each item belonged to, newest first */
+  const days = [...new Set(m.doneY.map(()=>m.Y).concat(m.decide.map(t=>t.eff)))].sort().reverse();
+  days.forEach(d=>{
+    const rows = [];
+    if(d===m.Y) m.doneY.forEach(t=>rows.push(todoRow(t,'review',m)));
+    m.decide.filter(t=>t.eff===d).forEach(t=>rows.push(todoRow(t,'review',m)));
+    body.append(h('div',{class:'grp-h',text:dayLabel(d,m.T)+' · '+fmtMonthDay.format(ymdDate(d))}),h('ul',{class:'tds'},rows));
+  });
+  det.append(body);
+  return det;
+}
+function droppedBlock(m){
+  const det = h('details',{class:'drop',open:ui.dropOpen||null},h('summary',{text:'已删除（'+m.dropped.length+'）'}));
+  det.addEventListener('toggle',()=>{ ui.dropOpen = det.open; });
+  det.append(h('ul',{class:'tds'},m.dropped.map(t=>h('li',{class:'td is-done'},
+    h('span'),
+    h('div',{class:'td-main'},h('div',{class:'td-title'},(t.state&&t.state.goal)?h('span',{class:'chip goal',text:'近期目标'}):null,t.title)),
+    h('div',{class:'td-side'},
+      h('button',{class:'ghost',type:'button','data-f':t.key+'|r',onclick:()=>restore([t]),text:'恢复'}),
+      t.custom?h('button',{class:'ghost del',type:'button','data-f':t.key+'|p',title:'永久删除，无法恢复',onclick:()=>purge(t),text:'彻底删除'}):null)))));
+  return det;
+}
+
+function persistNotice(){
+  if(store.err) return h('div',{class:'notice',role:'status',text:store.err.indexOf('read')===0?'读不到之前保存的勾选记录，下面的完成状态可能不全。':'刚才的改动没能保存，请检查网络后再试一次。'});
+  if(state.mode==='live' && !store.persist) return h('div',{class:'notice',role:'status',text:'此视图无法保存勾选记录，刷新页面后会丢失。'});
+  return null;
+}
+function renderGoals(now,m){
+  const body = $('goals-body'), cnt = $('goal-count');
+  if(!store.ready){ cnt.textContent = ''; body.replaceChildren(skeleton()); return; }
+  const nodes = [];
+  const pn = persistNotice(); if(pn) nodes.push(pn);
+  const undone = m.goals.filter(t=>!(t.state&&t.state.done)).sort(todoCmp('goals',(a,b)=>(a.goalAt-b.goalAt)||a.key.localeCompare(b.key)));
+  const dn = m.goals.filter(t=>t.state&&t.state.done).sort((a,b)=>(b.state.doneAt||0)-(a.state.doneAt||0));
+  if(!m.goals.length){
+    nodes.push(h('p',{class:'quiet pad',text:'还没有近期目标。把不急、没有日期的事放在这里，不用每天顺延。'}));
+  } else {
+    nodes.push(h('ul',{class:'tds'},undone.map((t,i)=>todoRow(t,'goal',m,undone.length>1?{day:'goals',pos:i,n:undone.length}:null)),dn.map(t=>todoRow(t,'goal',m))));
+  }
+  cnt.textContent = undone.length ? undone.length+' 项待做' : (dn.length?'都完成了':'');
+  body.replaceChildren(...nodes);
+}
+function renderToday(now,m){
+  const s = state.cal, body = $('today-body'), prog = $('prog');
+  if(s.status==='loading' || !store.ready){ prog.hidden = true; body.replaceChildren(skeleton()); return; }
+  if(s.status==='error' && !s.data){ prog.hidden = true; body.replaceChildren(errorBox('cal')); return; }
+  const nodes = [];
+  if(s.stale) nodes.push(h('div',{class:'notice',role:'status',text:'刚才没能刷新日历，显示的是 '+fmtTime.format(s.storedAt)+' 的内容。'}));
+  const pn = persistNotice(); if(pn) nodes.push(pn);
+  if(m.doneY.length || m.decide.length) nodes.push(reviewBlock(m));
+  const undone = m.today.filter(t=>!(t.state&&t.state.done)).sort(todoCmp(m.T,(a,b)=>{
+    const ca = !!(a.state&&a.state.carryDay&&a.origDay&&a.origDay<m.T), cb = !!(b.state&&b.state.carryDay&&b.origDay&&b.origDay<m.T);
+    if(ca!==cb) return ca?-1:1;
+    if(a.urgent!==b.urgent) return a.urgent?-1:1;
+    return (a.startMs-b.startMs)||(a.createdAt||0)-(b.createdAt||0);
+  }));
+  const dn = m.today.filter(t=>t.state&&t.state.done).sort((a,b)=>(a.state.doneAt||0)-(b.state.doneAt||0));
+  if(!m.today.length){
+    nodes.push(h('p',{class:'quiet pad',text:'今天没有待办，可以在上面添加。'}));
+  } else {
+    nodes.push(h('ul',{class:'tds'},undone.map((t,i)=>todoRow(t,'today',m,undone.length>1?{day:m.T,pos:i,n:undone.length}:null)),dn.map(t=>todoRow(t,'today',m))));
+    if(!undone.length) nodes.push(h('p',{class:'all-done',text:'今天的待办都完成了。'}));
+  }
+  const sched = m.events.filter(e=>e.day===m.T);
+  if(sched.length){
+    nodes.push(h('div',{class:'sub pad',text:'今日日程'}));
+    nodes.push(h('ul',{class:'evs'},sched.map(e=>eventRow(e,now,m.T))));
+  }
+  if(m.dropped.length) nodes.push(droppedBlock(m));
+  prog.hidden = !m.today.length;
+  $('prog-text').textContent = '已完成 '+dn.length+' / '+m.today.length;
+  $('prog-bar').style.width = m.today.length ? Math.round(dn.length/m.today.length*100)+'%' : '0%';
+  body.replaceChildren(...nodes);
+}
+
+function renderNext(now,m){
+  const s = state.cal, body = $('next-body');
+  if(s.status==='loading'){ body.replaceChildren(skeleton()); return; }
+  if(s.status==='error' && !s.data){ body.replaceChildren(errorBox('cal')); return; }
+  const nodes = [], open = [];
+  for(let i=1;i<DAYS;i++){
+    const day = addDays(m.T,i);
+    const rows = [];
+    m.events.filter(e=>e.day===day).forEach(e=>rows.push({e,kind:'event',startMs:e.startMs,allDay:e.allDay}));
+    m.future.filter(t=>t.eff===day).forEach(t=>rows.push({t,kind:'todo',startMs:t.startMs,allDay:t.allDay,createdAt:t.createdAt||0}));
+    if(!rows.length){ open.push(fmtWeekdayShort.format(ymdDate(day))); continue; }
+    /* to-dos come first, in the order you set (done ones last); fixed-time events follow */
+    const byTime = (a,b)=>(a.allDay!==b.allDay?(a.allDay?-1:1):0)||(a.startMs-b.startMs)||((a.createdAt||0)-(b.createdAt||0));
+    const isDone = r=>!!(r.t.state&&r.t.state.done);
+    const cmpT = todoCmp(day,(a,b)=>byTime(a,b));
+    const tdRows = rows.filter(r=>r.kind==='todo').sort((x,y)=> isDone(x)!==isDone(y) ? (isDone(x)?1:-1) : cmpT(x.t,y.t));
+    const evRows = rows.filter(r=>r.kind==='event').sort(byTime);
+    const nUndone = tdRows.filter(r=>!isDone(r)).length;
+    let pos = 0;
+    const ul = h('ul',{class:'evs'});
+    tdRows.concat(evRows).forEach(r=>{
+      if(r.kind==='event'){
+        const e = r.e;
+        ul.append(h('li',{class:'ev'},
+          h('div',{class:'ev-time'},h('span',{class:'t',text:e.allDay?'全天':fmtTime.format(e.startMs)}),(!e.allDay&&e.endMs>e.startMs)?h('span',{class:'d',text:span(e.endMs-e.startMs)}):null),
+          h('div',{class:'ev-main'},h('div',{class:'ev-title'},e.tag?h('span',{class:'chip'+(e.urgent?' urgent':''),text:e.tag}):null,e.url?h('a',{href:e.url,target:'_blank',rel:'noopener noreferrer',text:e.title}):document.createTextNode(e.title)),e.desc?h('div',{class:'ev-desc',text:e.desc}):null),
+          h('div',{class:'ev-side'},kindBtn(e.series,'event',e.key))));
+      } else {
+        const t = r.t, s = t.state||{}, done = !!s.done;
+        const cb = h('button',{class:'cb'+(done?' on':''),type:'button',role:'checkbox','aria-checked':done?'true':'false','data-f':t.key+'|cb','aria-label':(done?'改回未完成：':'提前标为完成：')+t.title,onclick:()=>toggleDone(t,'future')},svgCheck());
+        const dm = done ? doneMeta(s) : '';
+        const li = h('li',{class:'ev'+(done?' is-done':'')},
+          h('div',{class:'ev-time'},cb),
+          h('div',{class:'ev-main'},h('div',{class:'ev-title'},t.tag?h('span',{class:'chip'+(t.urgent?' urgent':''),text:t.tag}):null,t.url?h('a',{href:t.url,target:'_blank',rel:'noopener noreferrer',text:t.title}):document.createTextNode(t.title)),t.desc?h('div',{class:'ev-desc',text:t.desc}):null),
+          h('div',{class:'ev-side'},dm?h('span',{class:'td-meta',text:dm}):null,h('div',{class:'td-btns'},(done||t.custom)?null:kindBtn(t.series,'todo',t.key),delBtn(t))));
+        ul.append(markDraggable(li,t,(!done && nUndone>1)?{day:day,pos:pos++,n:nUndone}:null));
+      }
+    });
+    nodes.push(h('div',{class:'day'},h('div',{class:'day-h'},h('span',{text:dayLabel(day,m.T)}),h('span',{class:'dd',text:fmtMonthDay.format(ymdDate(day))})),ul));
+  }
+  if(!nodes.length) nodes.push(h('p',{class:'quiet pad',text:'接下来几天没有安排，可以在上面添加待办。'}));
+  else if(open.length) nodes.push(h('p',{class:'open-days',text:open.join('、')+' 没有安排。'}));
+  body.replaceChildren(...nodes);
+}
+
+function pausedBar(s){
+  const txt = s.data && s.storedAt ? '邮件自动更新已关闭，不会定时读取 Gmail。下面是 '+fmtTime.format(s.storedAt)+' 读到的内容。' : '邮件自动更新已关闭，不会读取 Gmail。';
+  return h('div',{class:'paused',role:'status'},
+    h('p',{text:txt}),
+    h('button',{class:'btn',type:'button',disabled:ui.mailBusy?true:null,onclick:fetchMailOnce,text:ui.mailBusy?'读取中…':'读取一次'}),
+    h('button',{class:'btn',type:'button',onclick:()=>setMailLive(true),text:'重新开启'}));
+}
+function renderMail(now){
+  const s = state.mail, body = $('mail-body');
+  const paused = state.mode==='live' && !mailOn();
+  if(!paused && s.status==='loading'){ body.replaceChildren(skeleton()); return; }
+  if(!paused && s.status==='error' && !s.data){ body.replaceChildren(errorBox('mail')); return; }
+  const nodes = [];
+  if(paused){
+    nodes.push(pausedBar(s));
+    if(s.status==='error' && !s.data){ nodes.push(errorBox('mail')); body.replaceChildren(...nodes); return; }
+    if(!s.data){ body.replaceChildren(...nodes); return; }
+  }
+  const items = s.data || [];
+  if(s.stale) nodes.push(h('div',{class:'notice',role:'status',text:'刚才没能刷新邮件，显示的是 '+fmtTime.format(s.storedAt)+' 的内容。'}));
+  if(!items.length){
+    nodes.push(h('p',{class:'quiet pad',text:'最近 '+MAIL_DAYS+' 天没有被标为重要的邮件。'}));
+  } else {
+    const ul = h('ul',{class:'mails'});
+    items.slice(0,MAIL_SHOW).forEach(t=>{
+      const inner = [
+        h('span',{class:'m-dot'}),
+        h('span',{class:'m-from',text:t.from+(t.count>1?'（'+t.count+'）':'')}),
+        h('span',{class:'m-when',text:ago(t.ms,now)}),
+        h('span',{class:'m-subj',text:t.subject})
+      ];
+      ul.append(h('li',{class:'mail'+(t.unread?' is-unread':'')}, t.url ? h('a',{href:t.url,target:'_blank',rel:'noopener noreferrer'},inner) : h('a',{role:'link','aria-disabled':'true'},inner)));
+    });
+    nodes.push(ul);
+  }
+  nodes.push(h('p',{class:'mail-foot',text:'最近 '+MAIL_DAYS+' 天里 Gmail 标为重要的邮件，未读在前。验证码类邮件已隐藏。'+(items.length>MAIL_SHOW?'显示 '+MAIL_SHOW+' / '+items.length+' 封。':'')}));
+  body.replaceChildren(...nodes);
+}
+
+function renderMast(now,m){
+  const cal = state.cal, mail = state.mail;
+  $('today-title').textContent = fmtFull.format(now);
+  const set = (id,v,sub)=>{ $(id).textContent = v; $(id+'-s').textContent = sub||' '; };
+  if(cal.data && store.ready){
+    const left = m.today.filter(t=>!(t.state&&t.state.done)).length;
+    set('st-left',left+' / '+m.today.length, m.today.length ? (left? '还没做完':'都完成了') : '今天没有待办');
+    set('st-dec',String(m.decide.length), m.decide.length ? '昨天及更早没做完' : '没有遗留');
+    const cur = m.events.find(e=>!e.allDay && e.startMs<=now && now<e.endMs);
+    const nxt = m.events.find(e=>!e.allDay && e.startMs>now);
+    if(cur) set('st-next','进行中',cur.title);
+    else if(nxt) set('st-next',relTo(nxt.startMs,now),(nxt.day===m.T?'':dayLabel(nxt.day,m.T)+' ')+fmtTime.format(nxt.startMs)+' · '+nxt.title);
+    else set('st-next','–','近期没有带时间的日程');
+  } else { set('st-left','–'); set('st-dec','–'); set('st-next','–'); }
+  const mailPaused = state.mode==='live' && !mailOn();
+  if(mail.data){
+    const u = mail.data.filter(x=>x.unread).length;
+    set('st-mail',String(u),'共 '+mail.data.length+' 封重要邮件'+(mailPaused?' · 已暂停更新':''));
+  } else set('st-mail','–',mailPaused?'邮件自动更新已关闭':'');
+
+  const dot = $('sync-dot'); let cls = '', txt = '正在连接…';
+  if(state.mode==='sample'){ cls='sample'; txt='示例数据，未连接'; }
+  else if(state.mode==='live'){
+    const srcs = mailPaused ? [cal] : [cal,mail];
+    const bad = srcs.some(s=>s.status==='error');
+    const stale = srcs.some(s=>s.stale);
+    const times = srcs.map(s=>s.storedAt).filter(Boolean);
+    if(bad){ cls='err'; txt='有数据源需要处理'; }
+    else if(stale){ cls='warn'; txt='刷新失败，显示上次的内容'; }
+    else if(times.length){ cls='live'; txt='实时 · 更新于 '+fmtTime.format(Math.max.apply(null,times))+(mailPaused?' · 邮件已暂停':''); }
+  }
+  dot.className = 'dot'+(cls?' '+cls:'');
+  $('sync-text').textContent = txt;
+  $('refresh').hidden = state.mode==='sample';
+  const tg = $('mail-live'), on = mailOn();
+  tg.hidden = state.mode!=='live';
+  tg.classList.toggle('on',on); tg.setAttribute('aria-checked',on?'true':'false');
+  $('mail-live-text').textContent = on ? '邮件自动更新：开' : '邮件自动更新：关';
+}
+
+function render(){
+  if(ui.dragging) return;   /* a redraw mid-drag would drop the row being held; the drop redraws */
+  const now = Date.now();
+  const sample = state.mode==='sample';
+  $('banner').hidden = !sample;
+  ['today','goals','next','mail'].forEach(k=>{ $('panel-'+k).classList.toggle('is-sample',sample); $(k+'-sample').hidden = !sample; });
+  $('mail-stamp').textContent = stampText('mail');
+  const m = buildModel(now);
+  renderMast(now,m); renderToday(now,m); renderGoals(now,m); renderNext(now,m); renderMail(now);
+  /* adding needs the saved state loaded and the calendar side showing something, so a half-loaded page can't take input it would then lose */
+  const cs = state.cal, canAdd = store.ready && cs.status!=='loading' && !(cs.status==='error' && !cs.data);
+  $('add-today').hidden = !canAdd; $('add-next').hidden = !canAdd; $('add-goal').hidden = !store.ready;
+  fillDays(m.T);
+  /* keep keyboard focus on the box just ticked, including through the re-render the saved write triggers */
+  if(ui.focus && Date.now()<ui.focusUntil && (!document.activeElement || document.activeElement===document.body)){
+    const el = document.querySelector('[data-f="'+ui.focus.replace(/"/g,'')+'"]');
+    if(el) el.focus({preventScroll:true});
+  }
+}
+
+/* ---------- boot ---------- */
+function tick(){
+  if(state.mode==='live' && mcp && ymdOf(Date.now())!==calDay) startCal();
+  render();
+}
+$('refresh').addEventListener('click',async()=>{
+  const b = $('refresh');
+  if(!mcp) return;
+  b.disabled = true;
+  try{ if(mailOn()) await mcp.invalidate(); else await mcp.invalidate(CAL.server); }catch(e){}
+  setTimeout(()=>{ b.disabled = false; },2500);
+});
+$('mail-live').addEventListener('click',()=>setMailLive(!mailOn()));
+function wireAdd(formId,inputId,add){
+  $(formId).addEventListener('submit',ev=>{
+    ev.preventDefault();
+    const inp = $(inputId);
+    if(add(inp.value)){ inp.value = ''; }
+    inp.focus({preventScroll:true});
+  });
+}
+wireAdd('add-today','add-today-in',v=>addTodo(v,ymdOf(Date.now())));
+wireAdd('add-next','add-next-in',v=>addTodo(v,$('add-next-day').value));
+wireAdd('add-goal','add-goal-in',v=>addGoal(v));
+$('add-next-day').addEventListener('change',()=>{ ui.selDay = $('add-next-day').value; });
+async function init(){
+  render();
+  setInterval(tick,30000);
+  if(!window.claude || typeof window.claude.use!=='function'){ goSample(); return; }
+  try{ mcp = await window.claude.use('mcp'); }catch(e){ mcp = null; }
+  if(!mcp){ goSample(); return; }
+  state.mode = 'live';
+  startCal(); render();
+  initStore();
+}
+init();
+})();
+</script>
