@@ -63,6 +63,8 @@ Selected Awards:
 
 ### Useful Tools Designed with AI
 
-[Quiet Timer](https://github.com/leeedwina430/quiet-timer) (macOS): a floating countdown with silent popup reminders and a daily tally of completed goals. *(For deadline warriors who need a deadline before the deadline. My survival kit when paper reviews pile up)*
+[Drug Discovery Radar](https://sub1.paperradar.uk/) (website): A daily roundup of papers and research updates on AI for drug discovery and protein design. We built the site on [AIHOT](https://github.com/KKKKhazix/AIHOT). Thanks to its author for making the framework open source.
+
+[Quiet Timer](https://github.com/leeedwina430/quiet-timer) (macOS app): a floating countdown with silent popup reminders and a daily tally of completed goals. *(For deadline warriors who need a deadline before the deadline. My survival kit when paper reviews pile up)*
 
 [Desk](/posts/2026/11/desk/) (Claude artifact): I put small tasks on my Google Calendar and check them off here. Each morning I look at what I didn’t finish yesterday and decide what’s worth keeping on today’s list. The post includes a prompt you can use to build your own.
