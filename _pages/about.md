@@ -65,4 +65,4 @@ Selected Awards:
 
 [Quiet Timer](https://github.com/leeedwina430/quiet-timer) (macOS): a floating countdown with silent popup reminders and a daily tally of completed goals. *(For deadline warriors who need a deadline before the deadline. My survival kit when paper reviews pile up)*
 
-[Desk](/posts/2026/11/desk/) (Claude artifact): a one-page daily dashboard that turns your calendar into a checklist, with a morning review of unfinished items, undated goals and an important-mail panel. *(Not a download but a recipe: the design ideas and a prompt to build your own with Claude)*
+[Desk](/posts/2026/11/desk/) (Claude artifact): I put small tasks on my Google Calendar and check them off here. Each morning I look at what I didn’t finish yesterday and decide what’s worth keeping on today’s list. The post includes a prompt you can use to build your own.
