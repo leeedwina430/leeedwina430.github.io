@@ -63,7 +63,7 @@ Selected Awards:
 
 ### Useful Tools Designed with AI
 
-**[Drug Discovery Radar](https://sub1.paperradar.uk/)** (website): A daily roundup of papers and research updates on AI for drug discovery and protein design. I maintain this site. We built the site on [AIHOT](https://github.com/KKKKhazix/AIHOT). Thanks to its author for making the framework open source! *If Radar helped you find a paper, I’d love to hear about it ;)*
+**[Drug Discovery Radar](https://sub1.paperradar.uk/)** (website): A daily roundup of papers and research updates on AI for drug discovery and protein design. I maintain this site. We built Radar on [AIHOT](https://github.com/KKKKhazix/AIHOT). Thanks for open-sourcing it! *If Radar helped you find a paper, I’d love to hear about it ;)*
 
 [Quiet Timer](https://github.com/leeedwina430/quiet-timer) (macOS app): a floating countdown with silent popup reminders and a daily tally of completed goals. *(For deadline warriors who need a deadline before the deadline. My survival kit when paper reviews pile up)*
 
